@@ -104,7 +104,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		// 檢查分裂條件
 		bool a = collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold;
 		bool b = currentTime - collisionTimestamps[collisionTimestamps.Count - BubbleConfig.CollisionSplitThreshold] <=
-		         BubbleConfig.CollisionCheckDuration;
+				 BubbleConfig.CollisionCheckDuration;
 		bool c = !(currentTime - lastSplitTime < CooldownTime);
 
 		GD.Print("a: "+a);
