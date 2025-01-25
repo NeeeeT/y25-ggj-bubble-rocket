@@ -7,7 +7,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="assets\scenes\" />
-    <Folder Include="assets\sprites\" />
-    <Folder Include="src\Entities\" />
   </ItemGroup>
 </Project>

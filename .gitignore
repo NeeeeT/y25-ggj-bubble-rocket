@@ -6,7 +6,6 @@ out/
 # Godot 專用
 .import/
 *.import
-*.godot
 export_presets.cfg
 *.log
 *.tmp
