@@ -2,6 +2,7 @@ using System;
 using Godot;
 using System.Collections.Generic;
 using LifeAtomGameDemo;
+using LifeAtomGameDemo.Elements;
 
 public partial class Bubble : RigidBody2D, IBubble
 {
@@ -11,7 +12,7 @@ public partial class Bubble : RigidBody2D, IBubble
 	[Export] public int Level { get; set; } = 1; // 初始等級
 	[Export] public float CooldownTime { get; set; } = 2.0f; // 冷卻時間
 	[Export] public float LevelGrowthRate { get; set; } = 1f; // 每秒等級增長速度
-	
+
 	public ElementManager ElementManager { get; set; } = new ElementManager();
 
 	public event Action<Bubble> OnBubbleDestroyed; // 泡泡刪除事件
@@ -24,8 +25,15 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	private Label _levelLabel; // 用於顯示等級的文字節點
 
+	public Color _Modulate
+	{
+		set => this.Modulate = value;
+	}
+	
 	public override void _Ready()
 	{
+		ElementManager.init(this);
+		
 		// 初始化泡泡大小
 		var sprite = GetNode<Sprite2D>("Sprite2D");
 		sprite.Scale = new Vector2(Size / sprite.Texture.GetWidth(), Size / sprite.Texture.GetHeight());
@@ -107,8 +115,10 @@ public partial class Bubble : RigidBody2D, IBubble
 			BubbleConfig.CollisionCheckDuration &&
 			!(currentTime - lastSplitTime < CooldownTime))
 		{
-			Split();
+			//Split();
 		}
+		
+		other.ElementManager.ApplyEffects(this, GetTree().Root);
 	}
 
 	public void UpdateSize()

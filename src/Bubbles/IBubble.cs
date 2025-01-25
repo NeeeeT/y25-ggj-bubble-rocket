@@ -1,4 +1,6 @@
 using System;
+using Godot;
+using LifeAtomGameDemo.Elements;
 
 namespace LifeAtomGameDemo;
 
@@ -10,6 +12,11 @@ public interface IBubble
     int Level { get; set; } // 泡泡等級
     float CooldownTime { get; set; } // 冷卻時間
     float LevelGrowthRate { get; set; } // 等級成長速率 (每秒)
+    
+
+    ElementManager ElementManager { get; set; }
+    Vector2 Position { get; set; }
+    Color _Modulate { set; }
 
     // 方法
     void Split(); // 分裂泡泡

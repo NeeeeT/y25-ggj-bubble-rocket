@@ -42,6 +42,7 @@ public partial class BubbleManager : Node
 
         if (element != null)
         {
+            newBubble.ElementManager.init(newBubble);
             newBubble.ElementManager.AddElement(element);
         }
         
