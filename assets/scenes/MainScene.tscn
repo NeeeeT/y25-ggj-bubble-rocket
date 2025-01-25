@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm6g46iydtyx1"]
+[gd_scene load_steps=8 format=3 uid="uid://cm6g46iydtyx1"]
 
 [ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://hernan/Bubble.tscn" id="2_6ekuh"]
-[ext_resource type="PackedScene" uid="uid://bam5yv7uuu3j4" path="res://assets/scenes/Explosion.tscn" id="3_46gpl"]
 [ext_resource type="Script" path="res://src/Bubbles/BubbleShooter.cs" id="3_d5jfu"]
 [ext_resource type="Script" path="res://src/Bubbles/BubbleManager.cs" id="4_e6jt5"]
 
@@ -14,8 +13,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6blst"]
 
 [node name="MainScene" type="Node2D"]
-
-[node name="Explosion" parent="." instance=ExtResource("3_46gpl")]
 
 [node name="BubbleShooter" type="Node2D" parent="."]
 script = ExtResource("3_d5jfu")
