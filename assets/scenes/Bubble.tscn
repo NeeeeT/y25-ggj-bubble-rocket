@@ -10,7 +10,7 @@ radius = 25.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ecxl8"]
 radius = 25.0
 
-[node name="Bubble" type="RigidBody2D"]
+[node name="Bubble" type="RigidBody2D" groups=["RigidBodies"]]
 physics_material_override = ExtResource("1_pplkk")
 script = ExtResource("1_uw45q")
 
