@@ -4,7 +4,7 @@ using System;
 public partial class Explosion : Node2D
 {
 	public float Radius = 100.0f; // 爆炸半徑
-	public float Force = 500.0f; // 爆炸推力
+	public float Force = 50.0f; // 爆炸推力
 	public float Duration = 0.5f; // 爆炸持續時間（秒）
 
 	private Timer _timer;

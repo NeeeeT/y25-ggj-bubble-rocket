@@ -21,7 +21,7 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	// 碰撞紀錄
 	private List<float> collisionTimestamps = new List<float>();
-	private float lastSplitTime = -1.0f;
+	private float lastSplitTime = 0f;
 	private float elapsedTime_forLevel = 0.0f; // 記錄經過的時間
 	private float currentTime = 0f;
 	private float BirthTime = 0f;
@@ -103,6 +103,7 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	public void Die()
 	{
+		
 		OnBubbleDestroyed?.Invoke(this); // 通知管理器
 	}
 
@@ -118,7 +119,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		
 		// 檢查分裂條件
 		if (collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold &&
-			!(currentTime - lastSplitTime < CooldownTime))
+			currentTime - lastSplitTime >= CooldownTime)
 		{
 			Split();
 		}

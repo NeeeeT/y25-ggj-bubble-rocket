@@ -8,7 +8,7 @@ public partial class BubbleManager : Node
 	[Export] public PackedScene BubbleScene { get; set; } // 泡泡場景
 	[Export] public int MaxBubbleCount { get; set; } = BubbleConfig.MaxBubbleCount; // 最大泡泡數量
 
-	private int _currentBubbleCount = 0;
+	private int _currentBubbleCount => _bubbles.Count;
 	public int CurrentBubbleCount => _currentBubbleCount; // 當前泡泡數量
 	public bool CanSplite { get; set; } = false;
 
@@ -35,7 +35,6 @@ public partial class BubbleManager : Node
 
 		AddChild(newBubble); // 添加到場景樹
 		_bubbles.Add(newBubble);
-		_currentBubbleCount++;
 
 		// 連接刪除信號
 		newBubble.OnBubbleDestroyed += HandleBubbleDestroyed;
@@ -52,20 +51,13 @@ public partial class BubbleManager : Node
 	// 泡泡分裂
 	public void SplitBubble(Bubble bubble)
 	{
-		if (!CanSplite)
-		{
-			GD.Print("泡泡管理器尚未允許分裂");
-			return;
-		}
-
 		if (!bubble.canBeSplit)
 		{
 			GD.Print("泡泡等級不足以分裂");
 			return;
 		}
 		
-		if (_currentBubbleCount + 2 > MaxBubbleCount)
-		{
+		if (_currentBubbleCount + 2 > MaxBubbleCount) {
 			GD.Print("Cannot split, bubble limit reached.");
 			return;
 		}
@@ -73,41 +65,33 @@ public partial class BubbleManager : Node
 		// 創建兩個子泡泡
 		for (int i = 0; i < 2; i++)
 		{
-			var newBubble = (Bubble)BubbleScene.Instantiate();
+			var newBubble = CreateBubble(bubble.Position, bubble.Size);
 
 			// 延遲設置子泡泡屬性
 			CallDeferred(nameof(InitializeBubble), newBubble, bubble, i);
 		}
 
 		// 延遲刪除原泡泡
-		bubble.CallDeferred(nameof(Bubble.Die));
+		_bubbles.Remove(bubble);
+		bubble.Die();
 	}
 
-	private void InitializeBubble(Bubble newBubble, Bubble parentBubble, int index)
+	private void InitializeBubble(Bubble newBubble, Bubble parentBubble,int i)
 	{
-		newBubble.Position = parentBubble.Position + new Vector2((index == 0 ? -1 : 1) * parentBubble.Size / 2, 0);
+		newBubble.Position = parentBubble.Position + new Vector2((i == 0 ? -1 : 1) * parentBubble.Size / 2, 0);
 		newBubble.Size = parentBubble.Size / 2;
 		newBubble.Weight = parentBubble.Weight / 2;
 
 		// 設置初始速度
 		newBubble.LinearVelocity = new Vector2(
-			(index == 0 ? -1 : 1) * BubbleConfig.MaxRandomVelocity,
+			(i == 0 ? -1 : 1) * BubbleConfig.MaxRandomVelocity,
 			GD.Randf() * BubbleConfig.MaxRandomVelocity - BubbleConfig.MinRandomVelocity);
-
-		AddChild(newBubble); // 添加到場景樹
-		_bubbles.Add(newBubble);
-		_currentBubbleCount++;
-
-		// 訂閱刪除事件
-		newBubble.OnBubbleDestroyed += HandleBubbleDestroyed;
 	}
 
-	
 	// 處理泡泡刪除
 	private void HandleBubbleDestroyed(Bubble bubble)
 	{
 		_bubbles.Remove(bubble);
-		_currentBubbleCount--;
 		bubble.QueueFree();
 	}
 
@@ -119,6 +103,5 @@ public partial class BubbleManager : Node
 			bubble.QueueFree();
 		}
 		_bubbles.Clear();
-		_currentBubbleCount = 0;
 	}
 }
