@@ -100,16 +100,6 @@ public partial class Bubble : RigidBody2D, IBubble
 
 		// 添加當前碰撞時間戳
 		collisionTimestamps.Add(currentTime);
-
-		// 檢查分裂條件
-		bool a = collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold;
-		bool b = currentTime - collisionTimestamps[collisionTimestamps.Count - BubbleConfig.CollisionSplitThreshold] <=
-				 BubbleConfig.CollisionCheckDuration;
-		bool c = !(currentTime - lastSplitTime < CooldownTime);
-
-		GD.Print("a: "+a);
-		GD.Print("b: "+b);
-		GD.Print("c: "+c);
 		
 		// 檢查分裂條件
 		if (collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold &&

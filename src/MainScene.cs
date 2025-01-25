@@ -5,7 +5,7 @@ using LifeAtomGameDemo;
 public partial class MainScene : Node2D
 {
 	[Export] public PackedScene BubbleScene;
-	[Export] public int BubbleCount = 12; // 初始泡泡數量
+	[Export] public int BubbleCount = 0; // 初始泡泡數量
 	[Export] public float SpawnInterval = 0.05f; // 每次生成泡泡的間隔時間（秒）
 
 	private BubbleManager _bubbleManager;

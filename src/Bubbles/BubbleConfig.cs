@@ -1,7 +1,7 @@
 public static class BubbleConfig
 {
     public const float SizeScaleBase = 50.0f; // 用於碰撞形狀比例計算的基準值
-    public const int MaxBubbleCount = 30; // 泡泡數量上限
+    public const int MaxBubbleCount = 5; // 泡泡數量上限
     public const float CollisionCheckDuration = 12.0f; // seconds
     public const int CollisionSplitThreshold = 1; // 分裂的碰撞次數條件
     public const float MinRandomVelocity = -500; // 隨機初始速度
