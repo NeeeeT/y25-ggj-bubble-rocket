@@ -49,7 +49,7 @@ public class FusionElement : IElement
     public void ApplyEffect(Bubble me, Bubble bubble, Node parent, Vector2 midpoint)
     {
         // 融合效果：
-        var tempScale = (me.Size+bubble.Size)/2;
+        var tempScale = (me.Size + bubble.Size) / 1.5f;
         bubble.Die();
         me.Die();
 
