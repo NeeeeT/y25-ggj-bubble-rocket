@@ -44,9 +44,8 @@ public partial class Explosion : Node2D
 
 				if (distance <= Radius)
 				{
-					float forceMultiplier = 1.0f - (distance / Radius); // 力量隨距離遞減
-					rigidBody.ApplyImpulse(direction * Force * forceMultiplier);
-					GD.Print(direction * Force * forceMultiplier);
+					rigidBody.ApplyImpulse(direction * Force);
+					GD.Print(direction * Force);
 				}
 			}
 		}

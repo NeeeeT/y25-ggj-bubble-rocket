@@ -24,10 +24,6 @@ window/size/viewport_height=1152
 
 project/assembly_name="LifeAtomGameDemo"
 
-[global_group]
-
-RigidBodies=""
-
 [input]
 
 TurretCCW={

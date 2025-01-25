@@ -155,7 +155,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		GD.Print("碰撞次數: "+collisionTimestamps.Count);
 		GD.Print("空窗期: "+(currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault())));
 		if (collisionTimestamps.Count == 0 && 
-		    currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault()) > BubbleConfig.CollisionCheckDuration)
+			currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault()) > BubbleConfig.CollisionCheckDuration)
 		{
 			CallDeferred(nameof(Die));
 		}
