@@ -79,6 +79,9 @@ public partial class Bubble : RigidBody2D, IBubble
 			UpdateSize(); // 更新大小
 			UpdateLabel(); // 更新文字
 		}
+		
+		if(Level>=BubbleConfig.MaxLivableLevel)
+			Die();
 	}
 
 	private void UpdateLabel()
