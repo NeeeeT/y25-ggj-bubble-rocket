@@ -142,6 +142,10 @@ public partial class Bubble : RigidBody2D, IBubble
 		var collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
 		collisionShape.Scale = new Vector2(Size / BubbleConfig.SizeScaleBase, Size / BubbleConfig.SizeScaleBase);
 
+		// 設定 Area2D 的碰撞形狀大小
+		var areaShape = GetNode<Area2D>("Area2D").GetNode<CollisionShape2D>("CollisionShape2D");
+		areaShape.Scale = new Vector2(Size / BubbleConfig.SizeScaleBase, Size / BubbleConfig.SizeScaleBase);
+
 		// 更新文字位置
 		UpdateLabelPosition();
 	}

@@ -8,7 +8,7 @@ public static class BubbleConfig
     public const float MaxRandomVelocity = 500;
 
     // 成長相關
-    public const float SizeGrowthFactor = 0.0f; // 每等級大小增長因子
+    public const float SizeGrowthFactor = 1f; // 每等級大小增長因子
 
     // 浮力相關
     public const float BuoyancyCoefficient = 0.05f; // 浮力係數 k
