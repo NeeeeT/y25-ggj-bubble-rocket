@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://doqa40v7ryt40"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://cuwgwtul7uiwy" path="res://assets/material/LowFrictionMaterial.tres" id="1_pplkk"]
+[ext_resource type="Script" path="res://src/Bubbles/Bubble.cs" id="1_uw45q"]
+[ext_resource type="Texture2D" uid="uid://dpedyk2uisjc3" path="res://assets/arts/bubleImg_mini.png" id="3_b4tou"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cyyoj"]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecxl8"]
+radius = 25.0
+
+[node name="Bubble" type="RigidBody2D"]
+physics_material_override = ExtResource("1_pplkk")
+script = ExtResource("1_uw45q")
+LevelGrowthRate = 0.01
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_b4tou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cyyoj")
+debug_color = Color(0.643137, 0.254902, 0.764706, 0.843137)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ecxl8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area_body_entered"]

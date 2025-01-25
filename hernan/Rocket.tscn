@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c46aikvuy54y1"]
+
+[ext_resource type="Texture2D" uid="uid://tou4h3fhniic" path="res://assets/arts/rocket.svg" id="1_4xtlb"]
+[ext_resource type="Texture2D" uid="uid://bcun5y0taliwv" path="res://assets/arts/turret.svg" id="2_7s78c"]
+[ext_resource type="Script" path="res://assets/scenes/TurretScript.gd" id="3_uredx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8u7o5"]
+bounce = 0.15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px2j7"]
+size = Vector2(106, 148)
+
+[node name="Rocket" type="Node2D"]
+
+[node name="RocketBody" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_8u7o5")
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+
+[node name="RocketSprite" type="Sprite2D" parent="RocketBody"]
+rotation = -1.5708
+texture = ExtResource("1_4xtlb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocketBody"]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_px2j7")
+
+[node name="Turret" type="Sprite2D" parent="RocketBody"]
+texture = ExtResource("2_7s78c")
+script = ExtResource("3_uredx")
+
+[node name="Marker2D" type="Marker2D" parent="RocketBody/Turret"]
+position = Vector2(70, 0)
+
+[node name="Camera2D" type="Camera2D" parent="RocketBody"]
+position = Vector2(3, -1)
+zoom = Vector2(0.5, 0.5)

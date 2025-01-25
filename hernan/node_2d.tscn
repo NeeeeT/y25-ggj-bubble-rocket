@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bebrjo5r61q41"]
+
+[ext_resource type="Texture2D" uid="uid://bvv2bfbykcwxg" path="res://assets/arts/rocket.svg" id="1_twv6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px2j7"]
+size = Vector2(106, 148)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.50796
+texture = ExtResource("1_twv6j")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+rotation = 1.50796
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-4, 1)
+shape = SubResource("RectangleShape2D_px2j7")
