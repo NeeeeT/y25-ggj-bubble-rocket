@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
 using LifeAtomGameDemo;
 using LifeAtomGameDemo.Elements;
 
@@ -18,10 +19,12 @@ public partial class Bubble : RigidBody2D, IBubble
 	public event Action<Bubble> OnBubbleDestroyed; // 泡泡刪除事件
 	public bool canBeSplit => Level > 1;
 
+	// 碰撞紀錄
 	private List<float> collisionTimestamps = new List<float>();
 	private float lastSplitTime = -1.0f;
-	private float elapsedTime = 0.0f; // 記錄經過的時間
+	private float elapsedTime_forLevel = 0.0f; // 記錄經過的時間
 	private float currentTime = 0f;
+	private float BirthTime = 0f;
 
 	private Label _levelLabel; // 用於顯示等級的文字節點
 
@@ -32,6 +35,8 @@ public partial class Bubble : RigidBody2D, IBubble
 	
 	public override void _Ready()
 	{
+		BirthTime = Time.GetTicksMsec()/1000;
+		
 		ElementManager.init(this);
 		
 		// 初始化泡泡大小
@@ -59,16 +64,18 @@ public partial class Bubble : RigidBody2D, IBubble
 	public override void _Process(double delta)
 	{
 		currentTime = Time.GetTicksMsec() / 1000.0f;
+		
+		// 移除寂寞死的設定時間區間外的碰撞記錄
 		collisionTimestamps.RemoveAll(timestamp => currentTime - timestamp > BubbleConfig.CollisionCheckDuration);
 
 		CheckLifeRules();
 
 		// 更新等級
-		elapsedTime += (float)delta;
-		if (elapsedTime >= 1.0f) // 每秒更新一次等級
+		elapsedTime_forLevel += (float)delta;
+		if (elapsedTime_forLevel >= 1.0f) // 每秒更新一次等級
 		{
-			Level += (int)(elapsedTime * LevelGrowthRate);
-			elapsedTime = 0.0f;
+			Level += (int)(elapsedTime_forLevel * LevelGrowthRate);
+			elapsedTime_forLevel = 0.0f;
 			UpdateSize(); // 更新大小
 			UpdateLabel(); // 更新文字
 		}
@@ -88,6 +95,7 @@ public partial class Bubble : RigidBody2D, IBubble
 	public void Split()
 	{
 		// 通知管理器進行分裂
+		lastSplitTime = currentTime;
 		var manager = (BubbleManager)GetParent();
 		manager.SplitBubble(this);
 		GD.Print("Split:" + manager.CurrentBubbleCount);
@@ -96,7 +104,6 @@ public partial class Bubble : RigidBody2D, IBubble
 	public void Die()
 	{
 		OnBubbleDestroyed?.Invoke(this); // 通知管理器
-		QueueFree();
 	}
 
 	public void HandleCollision(IBubble other)
@@ -111,11 +118,9 @@ public partial class Bubble : RigidBody2D, IBubble
 		
 		// 檢查分裂條件
 		if (collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold &&
-			currentTime - collisionTimestamps[collisionTimestamps.Count - BubbleConfig.CollisionSplitThreshold] <=
-			BubbleConfig.CollisionCheckDuration &&
 			!(currentTime - lastSplitTime < CooldownTime))
 		{
-			//Split();
+			Split();
 		}
 		
 		GD.Print("pon");
@@ -143,7 +148,10 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	private void CheckLifeRules()
 	{
-		if (collisionTimestamps.Count == 0 && currentTime > BubbleConfig.CollisionCheckDuration)
+		GD.Print("碰撞次數: "+collisionTimestamps.Count);
+		GD.Print("空窗期: "+(currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault())));
+		if (collisionTimestamps.Count == 0 && 
+		    currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault()) > BubbleConfig.CollisionCheckDuration)
 		{
 			CallDeferred(nameof(Die));
 		}

@@ -108,6 +108,7 @@ public partial class BubbleManager : Node
 	{
 		_bubbles.Remove(bubble);
 		_currentBubbleCount--;
+		bubble.QueueFree();
 	}
 
 	// 清除所有泡泡
