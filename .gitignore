@@ -47,4 +47,6 @@ project.fragment.lock.json
 *.sample
 *.ctex
 *.bin
-.godot/editor/filesystem_cache8
+
+# other ide
+.godot/editor/*
