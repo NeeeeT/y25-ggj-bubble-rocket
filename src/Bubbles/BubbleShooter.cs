@@ -27,6 +27,8 @@ public partial class BubbleShooter : Node2D
 			Vector2 targetPosition = GetGlobalMousePosition();
 			
 			ShootBubble(targetPosition);
+			Explosion.TriggerExplosion(GetTree().Root, targetPosition, 100.0f, 500.0f, 0.5f);
+
 			GD.Print("射擊"+mouseEvent.Position);
 		}
 	}
