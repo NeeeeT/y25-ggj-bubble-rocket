@@ -73,8 +73,8 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="BubbleManager" parent="." instance=ExtResource("5_ickvb")]
-MaxBubbleCount = 5
-
 [node name="BubbleShooter" parent="." instance=ExtResource("6_bvsof")]
 position = Vector2(-770, 803)
+
+[node name="BubbleManager" parent="." instance=ExtResource("5_ickvb")]
+MaxBubbleCount = 5
