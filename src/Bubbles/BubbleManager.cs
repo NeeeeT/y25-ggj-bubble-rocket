@@ -10,6 +10,7 @@ public partial class BubbleManager : Node
 
     private int _currentBubbleCount = 0;
     public int CurrentBubbleCount => _currentBubbleCount; // 當前泡泡數量
+    public bool CanSplite { get; set; } = false;
 
     private List<Bubble> _bubbles = new List<Bubble>();
 
@@ -45,6 +46,18 @@ public partial class BubbleManager : Node
     // 泡泡分裂
     public void SplitBubble(Bubble bubble)
     {
+        if (!CanSplite)
+        {
+            GD.Print("泡泡管理器尚未允許分裂");
+            return;
+        }
+
+        if (!bubble.canBeSplit)
+        {
+            GD.Print("泡泡等級不足以分裂");
+            return;
+        }
+        
         if (_currentBubbleCount + 2 > MaxBubbleCount)
         {
             GD.Print("Cannot split, bubble limit reached.");
