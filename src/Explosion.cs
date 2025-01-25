@@ -3,9 +3,9 @@ using System;
 
 public partial class Explosion : Node2D
 {
-	[Export] public float Radius = 100.0f; // 爆炸半徑
-	[Export] public float Force = 50000.0f; // 爆炸推力
-	[Export] public float Duration = 0.5f; // 爆炸持續時間（秒）
+	public float Radius = 100.0f; // 爆炸半徑
+	public float Force = 500.0f; // 爆炸推力
+	public float Duration = 0.5f; // 爆炸持續時間（秒）
 
 	private Timer _timer;
 
@@ -34,7 +34,8 @@ public partial class Explosion : Node2D
 	private void ApplyExplosionForce()
 	{
 		// 搜索場景中的剛體並應用推力
-		foreach (Node node in GetTree().GetNodesInGroup("RigidBodies"))
+		var allRNodes = GetTree().GetNodesInGroup("RigidBodies");
+		foreach (Node node in allRNodes)
 		{
 			if (node is RigidBody2D rigidBody)
 			{

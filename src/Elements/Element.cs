@@ -21,10 +21,7 @@ public class FireElement : IElement
         
         var explosion = new Explosion
         {
-            Position = midpoint,
-            Radius = 100,
-            Force = 500,
-            Duration = 0.5f
+            Position = midpoint
         };
 
         parent.AddChild(explosion);
