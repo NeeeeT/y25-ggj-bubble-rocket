@@ -20,7 +20,7 @@ public partial class BubbleManager : Node
     }
 
     // 生成泡泡
-    public Bubble CreateBubble(Vector2 position, float size, float weight, IElement element=null)
+    public Bubble CreateBubble(Vector2 position, float size, IElement element=null)
     {
         if (_currentBubbleCount >= MaxBubbleCount)
         {
@@ -31,7 +31,7 @@ public partial class BubbleManager : Node
         var newBubble = (Bubble)BubbleScene.Instantiate();
         newBubble.Position = position;
         newBubble.Size = size;
-        newBubble.Weight = weight;
+        newBubble.Weight = size * BubbleConfig.DensityFactor;
 
         AddChild(newBubble); // 添加到場景樹
         _bubbles.Add(newBubble);

@@ -44,18 +44,21 @@ public partial class MainScene : Node2D
 		random.Randomize();
 
 		// 生成泡泡
-		var bubble = (RigidBody2D)BubbleScene.Instantiate();
-		_bubbleManager.AddChild(bubble);
 
 		// 設置隨機位置與方向
-		bubble.Position = new Vector2(
+		var pos = new Vector2(
 			random.RandfRange(BubbleConfig.MinRandomVelocity, BubbleConfig.MaxRandomVelocity),
 			random.RandfRange(BubbleConfig.MinRandomVelocity, BubbleConfig.MaxRandomVelocity));
 
+		var bubble = _bubbleManager.CreateBubble(pos, BubbleConfig.SizeScaleBase);
+		
 		bubble.LinearVelocity = new Vector2(
 			random.RandfRange(BubbleConfig.MinRandomVelocity, BubbleConfig.MaxRandomVelocity),
 			random.RandfRange(BubbleConfig.MinRandomVelocity, BubbleConfig.MaxRandomVelocity));
 
+		
+		_bubbleManager.AddChild(bubble);
+		
 		_spawnedBubbleCount++; // 更新已生成泡泡數量
 	}
 }
