@@ -13,7 +13,6 @@ radius = 25.0
 [node name="Bubble" type="RigidBody2D"]
 physics_material_override = ExtResource("1_pplkk")
 script = ExtResource("1_uw45q")
-LevelGrowthRate = 0.01
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_b4tou")

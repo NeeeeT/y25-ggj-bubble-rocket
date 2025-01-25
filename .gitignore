@@ -42,3 +42,9 @@ project.fragment.lock.json
 *.tmp
 *.swp
 *.lock
+*.cfg
+*.md5
+*.sample
+*.ctex
+*.bin
+.godot/editor/filesystem_cache8
