@@ -15,6 +15,11 @@ run/main_scene="res://assets/scenes/MainScene.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://assets/arts/icon.svg"
 
+[display]
+
+window/size/viewport_width=648
+window/size/viewport_height=1152
+
 [dotnet]
 
 project/assembly_name="LifeAtomGameDemo"
