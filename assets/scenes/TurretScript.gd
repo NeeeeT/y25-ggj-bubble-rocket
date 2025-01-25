@@ -25,9 +25,18 @@ func _physics_process(delta: float) -> void:
 		$Marker2D.add_child(shot)
 		shoot_player.play()
 		
+
 		#get_parent().set_freeze_enabled(false)
-		get_parent().apply_impulse(Vector2(0,-10))
+		get_parent().apply_impulse(get_target_vector(-50))
 		#get_parent().set_freeze_enabled(true)
 
 		shot.reparent(get_parent().get_parent())
-		shot.apply_impulse(Vector2(400,0),$Marker2D.get_position())
+		# shot.apply_impulse(Vector2(400,0),$Marker2D.get_position())
+		
+		shot.apply_impulse(get_target_vector(800),$Marker2D.get_position())
+
+func get_target_vector(force: float) -> Vector2:
+	var object_pos = self.global_position
+	var marker_pos = $Marker2D.global_position
+	var direction_vector = marker_pos - object_pos
+	return direction_vector.normalized() * force
