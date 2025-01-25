@@ -54,17 +54,4 @@ public partial class Explosion : Node2D
 	{
 		QueueFree(); // 自動銷毀節點
 	}
-
-	public static void TriggerExplosion(Node parent, Vector2 position, float radius, float force, float duration)
-	{
-		var explosion = new Explosion
-		{
-			Position = position,
-			Radius = radius,
-			Force = force,
-			Duration = duration
-		};
-
-		parent.AddChild(explosion);
-	}
 }
