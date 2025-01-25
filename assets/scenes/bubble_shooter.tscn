@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://o3dpavfpy55x"]
+
+[ext_resource type="Script" path="res://src/Bubbles/BubbleShooter.cs" id="1_h66u6"]
+[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://assets/scenes/Bubble.tscn" id="2_i0b76"]
+
+[node name="BubbleShooter" type="Node2D"]
+script = ExtResource("1_h66u6")
+BubbleScene = ExtResource("2_i0b76")
+BubbleManagerPath = NodePath("../BubbleManager")

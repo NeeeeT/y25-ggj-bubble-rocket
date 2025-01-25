@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3jm5gjrjduhi"]
+
+[ext_resource type="Script" path="res://src/Bubbles/BubbleManager.cs" id="1_swjjb"]
+[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://assets/scenes/Bubble.tscn" id="2_krlu8"]
+
+[node name="BubbleManager" type="Node"]
+script = ExtResource("1_swjjb")
+BubbleScene = ExtResource("2_krlu8")
+MaxBubbleCount = null
