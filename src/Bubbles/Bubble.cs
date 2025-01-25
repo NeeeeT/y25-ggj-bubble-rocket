@@ -82,6 +82,7 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	public void Die()
 	{
+		//GD.Print("Die:"+((BubbleManager)GetParent()).CurrentBubbleCount);
 		//GD.Print("Bubble died.");
 		OnBubbleDestroyed?.Invoke(this); // 通知管理器
 		QueueFree();
