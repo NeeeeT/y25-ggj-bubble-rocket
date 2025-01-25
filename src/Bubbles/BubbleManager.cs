@@ -20,7 +20,7 @@ public partial class BubbleManager : Node
     }
 
     // 生成泡泡
-    public Bubble CreateBubble(Vector2 position, float size, float weight)
+    public Bubble CreateBubble(Vector2 position, float size, float weight, IElement element=null)
     {
         if (_currentBubbleCount >= MaxBubbleCount)
         {
@@ -40,6 +40,11 @@ public partial class BubbleManager : Node
         // 連接刪除信號
         newBubble.OnBubbleDestroyed += HandleBubbleDestroyed;
 
+        if (element != null)
+        {
+            newBubble.ElementManager.AddElement(element);
+        }
+        
         return newBubble;
     }
 

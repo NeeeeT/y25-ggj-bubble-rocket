@@ -11,6 +11,8 @@ public partial class Bubble : RigidBody2D, IBubble
 	[Export] public int Level { get; set; } = 1; // 初始等級
 	[Export] public float CooldownTime { get; set; } = 2.0f; // 冷卻時間
 	[Export] public float LevelGrowthRate { get; set; } = 1f; // 每秒等級增長速度
+	
+	public ElementManager ElementManager { get; set; } = new ElementManager();
 
 	public event Action<Bubble> OnBubbleDestroyed; // 泡泡刪除事件
 	public bool canBeSplit => Level > 1;
