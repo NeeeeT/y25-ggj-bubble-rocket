@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/GameManager.cs" id="1_2if1h"]
 [ext_resource type="Script" path="res://src/MainScene.cs" id="1_c0yqo"]
 [ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://assets/scenes/Bubble.tscn" id="2_6ekuh"]
-[ext_resource type="Script" path="res://src/BubbleManager.cs" id="4_e6jt5"]
+[ext_resource type="Script" path="res://src/Bubbles/BubbleManager.cs" id="4_e6jt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8fot"]
 
