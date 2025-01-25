@@ -1,15 +1,45 @@
-# Godot 4+ specific ignores
-.godot/
+# Rider 專用
+.idea/
+*.iml
+out/
 
-# Godot-specific ignores
+# Godot 專用
 .import/
-export.cfg
+*.import
+*.godot
 export_presets.cfg
+*.log
+*.tmp
 
-# Imported translations (automatically generated from CSV files)
-*.translation
+# 一般 C# 專案
+bin/
+obj/
+*.csproj.user
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.cache
 
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+# Rider 設定檔 (如果需要共享，則移除這行)
+.idea/
+
+# 特定操作系統檔案
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# NuGet Packages
+packages/
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+project.fragment.lock.json
+
+# 記錄的其他 IDE 或工具
+*.bak
+*.tmp
+*.swp
+*.lock
