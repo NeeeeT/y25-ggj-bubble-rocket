@@ -19,7 +19,8 @@ public partial class Explosion : Node2D
 		AddChild(_timer);
 		
 		_timer.Start();
-
+		
+		
 		// 執行爆炸效果
 		ApplyExplosionForce();
 	}

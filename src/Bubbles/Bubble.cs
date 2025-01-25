@@ -118,6 +118,7 @@ public partial class Bubble : RigidBody2D, IBubble
 			//Split();
 		}
 		
+		GD.Print("pon");
 		other.ElementManager.ApplyEffects(this, GetTree().Root);
 	}
 
@@ -151,11 +152,18 @@ public partial class Bubble : RigidBody2D, IBubble
 	private void _on_Area_body_entered(Node body)
 	{
 		if (body == this)
+		{
+			GD.Print("無效碰撞: self");
 			return;
+		}
 		
 		if (body is IBubble bubble)
 		{
 			HandleCollision(bubble);
+		}
+		else
+		{
+			GD.Print("無效碰撞: not IBubble");
 		}
 	}
 }

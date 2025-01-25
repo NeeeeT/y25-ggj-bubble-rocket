@@ -18,7 +18,6 @@ public class FireElement : IElement
         // 火焰效果：增加等級或特定屬性
         bubble.Level += 1; // 增加泡泡等級
         GD.Print("作用Fire");
-        //Explosion.TriggerExplosion(parent, midpoint, 100.0f, 500.0f, 0.5f);
         
         var explosion = new Explosion
         {

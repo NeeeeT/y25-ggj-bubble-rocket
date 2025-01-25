@@ -36,10 +36,8 @@ public partial class BubbleShooter : Node2D
 	private void ShootBubble(Vector2 targetPosition)
 	{
 		// 生成泡泡
-		var bubble = (Bubble)BubbleScene.Instantiate();
+		var bubble =  _bubbleManager.CreateBubble(new Vector2(0, 0), BubbleConfig.SizeScaleBase) ;
 
-		// 設定泡泡初始位置和方向
-		bubble.Position = new Vector2(0, 0); // 初始位置為 (0,0)
 		var direction = (targetPosition - bubble.Position).Normalized();
 
 		// 設置泡泡的速度
@@ -47,9 +45,5 @@ public partial class BubbleShooter : Node2D
 
 		bubble.ElementManager.init(bubble);
 		bubble.ElementManager.AddElement(new FireElement());
-		
-		
-		// 將泡泡加入到管理器中
-		_bubbleManager.AddChild(bubble);
 	}
 }
