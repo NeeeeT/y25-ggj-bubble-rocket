@@ -150,6 +150,9 @@ public partial class Bubble : RigidBody2D, IBubble
 	
 	private void _on_Area_body_entered(Node body)
 	{
+		if (body == this)
+			return;
+		
 		if (body is IBubble bubble)
 		{
 			HandleCollision(bubble);
