@@ -50,3 +50,4 @@ project.fragment.lock.json
 
 # other ide
 .godot/editor/*
+/.godot/editor
