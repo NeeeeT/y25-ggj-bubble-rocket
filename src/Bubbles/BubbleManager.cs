@@ -15,7 +15,7 @@ public partial class BubbleManager : Node
 
     public override void _Process(double delta)
     {
-        GD.Print("泡泡num: "+ _currentBubbleCount);
+        //GD.Print("泡泡num: "+ _currentBubbleCount);
     }
 
     // 生成泡泡
