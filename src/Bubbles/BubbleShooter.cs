@@ -49,6 +49,7 @@ public partial class BubbleShooter : Node2D
 		bubble.LinearVelocity = direction * 200; // 射向點擊位置，速度為 200
 
 		bubble.ElementManager.init(bubble);
-		bubble.ElementManager.AddElement(new FireElement());
+		//bubble.ElementManager.AddElement(new FireElement());
+		bubble.ElementManager.AddElement(new NormalElement());
 	}
 }

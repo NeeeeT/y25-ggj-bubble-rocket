@@ -27,12 +27,15 @@ public partial class Bubble : RigidBody2D, IBubble
 	private float BirthTime = 0f;
 
 	private Label _levelLabel; // 用於顯示等級的文字節點
+	
 
 	public Color _Modulate
 	{
 		set => this.Modulate = value;
 	}
-	
+
+	public float VelocityFactor { get; set; } = 1f;
+
 	public override void _Ready()
 	{
 		BirthTime = Time.GetTicksMsec()/1000;
@@ -82,6 +85,8 @@ public partial class Bubble : RigidBody2D, IBubble
 		
 		if(Level>=BubbleConfig.MaxLivableLevel)
 			Die();
+
+		this.LinearVelocity *= VelocityFactor;
 	}
 
 	private void UpdateLabel()
@@ -128,7 +133,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		}
 		
 		GD.Print("pon");
-		other.ElementManager.ApplyEffects(this, GetTree().Root);
+		other.ElementManager.ApplyEffects(other, this, GetTree().Root);
 	}
 
 	public void UpdateSize()

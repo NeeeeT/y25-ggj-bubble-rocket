@@ -20,6 +20,11 @@ public class ElementManager
         _elements.Add(element);
         if(element is FireElement)
             m_bubble._Modulate = new Color(1, 0, 0); // RGB 為 (1, 0, 0)，即紅色
+        if (element is NormalElement)
+        {
+            m_bubble._Modulate = new Color(0.2f, 0.2f, 0.8f);
+            m_bubble.VelocityFactor = 0.99f;
+        }
     }
 
     // 移除元素
@@ -29,14 +34,14 @@ public class ElementManager
     }
 
     // 應用所有元素效果
-    public void ApplyEffects(Bubble targetBubble,Node parent)
+    public void ApplyEffects(Bubble me, Bubble targetBubble,Node parent)
     {        
         // 計算兩個泡泡位置的中點
         var midpoint = (m_bubble.Position + targetBubble.Position) / 2;
 
         foreach (var element in _elements)
         {
-            element.ApplyEffect(targetBubble, parent, midpoint);
+            element.ApplyEffect(me, targetBubble, parent, midpoint);
         }
     }
 }

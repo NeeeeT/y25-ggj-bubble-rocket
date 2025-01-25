@@ -17,6 +17,7 @@ public interface IBubble
 	ElementManager ElementManager { get; set; }
 	Vector2 Position { get; set; }
 	Color _Modulate { set; }
+	float VelocityFactor { get; set; }
 
 	// 方法
 	void Split(); // 分裂泡泡
