@@ -1,6 +1,0 @@
-res://src/GameManager.cs
-res://src/MainScene.cs
-res://src/Bubbles/BubbleManager.cs
-res://src/Bubbles/Bubble.cs
-res://assets/scenes/MainScene.tscn
-res://assets/scenes/Bubble.tscn
