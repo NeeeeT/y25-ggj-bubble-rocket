@@ -46,8 +46,17 @@ public partial class BubbleManager : Node
     // 泡泡分裂
     public void SplitBubble(Bubble bubble)
     {
-        if(!CanSplite && !bubble.canBeSplit)
+        if (!CanSplite)
+        {
+            GD.Print("泡泡管理器尚未允許分裂");
             return;
+        }
+
+        if (!bubble.canBeSplit)
+        {
+            GD.Print("泡泡等級不足以分裂");
+            return;
+        }
         
         if (_currentBubbleCount + 2 > MaxBubbleCount)
         {
