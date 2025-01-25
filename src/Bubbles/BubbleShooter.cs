@@ -27,7 +27,7 @@ public partial class BubbleShooter : Node2D
 			Vector2 targetPosition = GetGlobalMousePosition();
 			
 			ShootBubble(targetPosition);
-			Explosion.TriggerExplosion(GetTree().Root, targetPosition, 100.0f, 500.0f, 0.5f);
+			
 
 			GD.Print("射擊"+mouseEvent.Position);
 		}
@@ -45,6 +45,10 @@ public partial class BubbleShooter : Node2D
 		// 設置泡泡的速度
 		bubble.LinearVelocity = direction * 200; // 射向點擊位置，速度為 200
 
+		bubble.ElementManager.init(bubble);
+		bubble.ElementManager.AddElement(new FireElement());
+		
+		
 		// 將泡泡加入到管理器中
 		_bubbleManager.AddChild(bubble);
 	}
