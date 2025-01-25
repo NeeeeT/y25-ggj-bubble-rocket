@@ -13,7 +13,8 @@ public partial class Bubble : RigidBody2D, IBubble
 	[Export] public float LevelGrowthRate { get; set; } = 0.1f; // 每秒等級增長速度
 	
 	public event Action<Bubble> OnBubbleDestroyed; // 泡泡刪除事件
-	
+	public bool canBeSplit => Level>100;
+
 	private List<float> collisionTimestamps = new List<float>();
 	private float lastSplitTime = -1.0f;
 	private float elapsedTime = 0.0f; // 記錄經過的時間

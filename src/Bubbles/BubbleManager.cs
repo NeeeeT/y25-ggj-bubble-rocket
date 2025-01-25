@@ -46,7 +46,7 @@ public partial class BubbleManager : Node
     // 泡泡分裂
     public void SplitBubble(Bubble bubble)
     {
-        if(CanSplite == false)
+        if(!CanSplite && !bubble.canBeSplit)
             return;
         
         if (_currentBubbleCount + 2 > MaxBubbleCount)
