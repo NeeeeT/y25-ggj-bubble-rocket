@@ -77,6 +77,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		// 通知管理器進行分裂
 		var manager = (BubbleManager)GetParent();
 		manager.SplitBubble(this);
+		GD.Print("Split:"+manager.CurrentBubbleCount);
 	}
 
 	public void Die()
@@ -90,17 +91,31 @@ public partial class Bubble : RigidBody2D, IBubble
 	public void HandleCollision(IBubble other)
 	{
 		float currentTime = Time.GetTicksMsec() / 1000.0f;
+
+		// 清理超過檢查時間的碰撞時間戳
+		collisionTimestamps.RemoveAll(timestamp => currentTime - timestamp > BubbleConfig.CollisionCheckDuration);
+
+		// 添加當前碰撞時間戳
 		collisionTimestamps.Add(currentTime);
 
+		// 檢查分裂條件
+		bool a = collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold;
+		bool b = currentTime - collisionTimestamps[collisionTimestamps.Count - BubbleConfig.CollisionSplitThreshold] <=
+		         BubbleConfig.CollisionCheckDuration;
+		bool c = !(currentTime - lastSplitTime < CooldownTime);
+		
+		// GD.Print("a: "+a);
+		// GD.Print("b: "+b);
+		// GD.Print("c: "+c);
+		
 		if (collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold &&
-			currentTime - collisionTimestamps[collisionTimestamps.Count - BubbleConfig.CollisionSplitThreshold] <=
-			BubbleConfig.CollisionCheckDuration &&
-			!(currentTime - lastSplitTime < CooldownTime))
+		    currentTime - collisionTimestamps[collisionTimestamps.Count - BubbleConfig.CollisionSplitThreshold] <=
+		    BubbleConfig.CollisionCheckDuration &&
+		    !(currentTime - lastSplitTime < CooldownTime))
 		{
 			Split();
 		}
 	}
-
 	
 	public void UpdateSize()
 	{
