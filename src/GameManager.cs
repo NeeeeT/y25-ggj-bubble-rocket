@@ -57,6 +57,9 @@ public partial class GameManager : Node
 
 	private void LoadLevel(int levelIndex)
 	{
+		MusicPlayer musicPlayer = (MusicPlayer) GetNode("/root/MusicPlayer");
+		double[] vals = new double[] { 1.0, 0.0, 0.0 };
+		musicPlayer.SetSections(vals);
 		// LevelController levelInstance = levels[levelIndex].Instantiate();
 		// currentLevelController = levelInstance;
 
