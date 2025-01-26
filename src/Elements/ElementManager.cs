@@ -34,7 +34,7 @@ public class ElementManager
     }
 
     // 應用所有元素效果
-    public void ApplyEffects(Bubble me, Bubble targetBubble,Node parent)
+    public void ApplyEffects(IBubble me, Bubble targetBubble,Node parent)
     {        
         // 計算兩個泡泡位置的中點
         var midpoint = (m_bubble.Position + targetBubble.Position) / 2;
