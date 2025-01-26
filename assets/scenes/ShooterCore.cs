@@ -5,35 +5,35 @@ public partial class ShooterCore : Node2D
 {
 	private BubbleShooter _bubbleShooter;
 	
+	public void ShootByIndex( Vector2 startPosition, Vector2 position, string index)
+	{
+		_bubbleShooter.ShootBubble(startPosition, position, index);
+	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public void TEST( Vector2 startPosition, Vector2 position)
 	{
-		GD.Print("成功呼叫C#腳本: "+position);
 		// _bubbleShooter.ShootBubble(startPosition, position);
 		_bubbleShooter.ShootBubble(startPosition, startPosition + position, "Normal");
 	}
 	
 	public void TEST_Fire( Vector2 startPosition, Vector2 position)
 	{
-		GD.Print("成功呼叫C#腳本: "+position);
 		_bubbleShooter.ShootBubble(startPosition, startPosition + position, "Fire");
 	}
 	
 	public void TEST_Fusion( Vector2 startPosition, Vector2 position)
 	{
-		GD.Print("成功呼叫C#腳本: "+position);
 		_bubbleShooter.ShootBubble(startPosition, position,"Fusion");
 	}
 	
 	public void TEST_Tape( Vector2 startPosition, Vector2 position)
 	{
-		GD.Print("成功呼叫C#腳本: "+position);
 		_bubbleShooter.ShootBubble(startPosition, position,"Tape");
 	}
 	
 	public void TEST_Death( Vector2 startPosition, Vector2 position)
 	{
-		GD.Print("成功呼叫C#腳本: "+position);
 		_bubbleShooter.ShootBubble(startPosition, position, "Death");
 	}
 
