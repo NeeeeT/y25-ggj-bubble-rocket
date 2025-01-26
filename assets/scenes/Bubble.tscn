@@ -2,7 +2,7 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://cuwgwtul7uiwy" path="res://assets/material/LowFrictionMaterial.tres" id="1_pplkk"]
 [ext_resource type="Script" path="res://src/Bubbles/Bubble.cs" id="1_uw45q"]
-[ext_resource type="Texture2D" uid="uid://dvjo6dpa8u1cy" path="res://assets/arts/normal_bubble.svg" id="3_4lh0n"]
+[ext_resource type="Texture2D" uid="uid://glktjkh2ytua" path="res://assets/arts/normal_bubble.svg" id="3_4lh0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cyyoj"]
 radius = 25.0

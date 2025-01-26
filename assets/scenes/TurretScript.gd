@@ -21,19 +21,20 @@ func _physics_process(delta: float) -> void:
 		rotate(-rad_to_deg(1)*0.1*delta)
 		rotate_player.play();
 	if Input.is_action_just_pressed("ui_accept"):
-		var shot = bubbleShot.instantiate()
-		$Marker2D.add_child(shot)
-		shoot_player.play()
+		##var shot = bubbleShot.instantiate()
+		$ShooterCore.TEST(get_target_vector(1))
+		##$Marker2D.add_child(shot)
+		##shoot_player.play()
 		
 
 		#get_parent().set_freeze_enabled(false)
-		get_parent().apply_impulse(get_target_vector(-50))
+		##get_parent().apply_impulse(get_target_vector(-50))
 		#get_parent().set_freeze_enabled(true)
 
-		shot.reparent(get_parent().get_parent())
+		##shot.reparent(get_parent().get_parent())
 		# shot.apply_impulse(Vector2(400,0),$Marker2D.get_position())
 		
-		shot.apply_impulse(get_target_vector(800),$Marker2D.get_position())
+		##shot.apply_impulse(get_target_vector(800),$Marker2D.get_position())
 
 func get_target_vector(force: float) -> Vector2:
 	var object_pos = self.global_position

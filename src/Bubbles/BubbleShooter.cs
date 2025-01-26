@@ -34,25 +34,26 @@ public partial class BubbleShooter : Node2D
         }
     }
 
-    private void ShootBubble(Vector2 targetPosition)
+    public void ShootBubble(Vector2 targetPosition)
     {
         // 生成泡泡
-        var bubble = _bubbleManager.CreateBubble(new Vector2(0, 0), BubbleConfig.SizeScaleBase);
+        var bubble = _bubbleManager.CreateBubble(this.GlobalPosition, BubbleConfig.SizeScaleBase);
+        //GD.Print("泡泡出現位置: "+ Position);
         if (bubble == null)
         {
             GD.Print("泡泡射出失敗");
             return;
         }
 
-        var direction = (targetPosition - bubble.Position).Normalized();
+        var direction = (targetPosition ).Normalized();
 
         // 設置泡泡的速度
         bubble.LinearVelocity = direction * 200; // 射向點擊位置，速度為 200
 
         bubble.ElementManager.init(bubble);
         
-        bubble.ElementManager.AddElement(new NormalElement()); // 賦予屬性: 一般 
-        bubble.ElementManager.AddElement(new FireElement()); // 賦予屬性: 火
+        //bubble.ElementManager.AddElement(new NormalElement()); // 賦予屬性: 一般 
+        //bubble.ElementManager.AddElement(new FireElement()); // 賦予屬性: 火
         
         // 以下屬性 請不要混搭
         //bubble.ElementManager.AddElement(new FusionElement()); // 賦予屬性: 融合
