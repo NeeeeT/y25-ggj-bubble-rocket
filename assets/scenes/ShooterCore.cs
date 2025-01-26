@@ -6,10 +6,10 @@ public partial class ShooterCore : Node2D
 	private BubbleShooter _bubbleShooter;
 	
 	// Called when the node enters the scene tree for the first time.
-	public void TEST(Vector2 position)
+	public void TEST( Vector2 startPosition, Vector2 position)
 	{
 		GD.Print("成功呼叫C#腳本: "+position);
-		_bubbleShooter.ShootBubble(position);
+		_bubbleShooter.ShootBubble(startPosition, position);
 	}
 
 	public override void _Draw()

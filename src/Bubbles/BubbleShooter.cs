@@ -27,17 +27,17 @@ public partial class BubbleShooter : Node2D
             // 轉換滑鼠點擊位置到 Node2D 的本地座標
             Vector2 targetPosition = GetGlobalMousePosition();
 
-            ShootBubble(targetPosition);
+            ShootBubble(Vector2.Zero, targetPosition);
 
 
             GD.Print("射擊" + mouseEvent.Position);
         }
     }
 
-    public void ShootBubble(Vector2 targetPosition)
+    public void ShootBubble(Vector2 StartPosition,Vector2 targetPosition)
     {
         // 生成泡泡
-        var bubble = _bubbleManager.CreateBubble(this.GlobalPosition, BubbleConfig.SizeScaleBase);
+        var bubble = _bubbleManager.CreateBubble(StartPosition, BubbleConfig.SizeScaleBase);
         //GD.Print("泡泡出現位置: "+ Position);
         if (bubble == null)
         {
@@ -45,15 +45,17 @@ public partial class BubbleShooter : Node2D
             return;
         }
 
-        var direction = (targetPosition ).Normalized();
-
+        var direction = (targetPosition -StartPosition).Normalized();
+        GD.Print("目標位置: "+ targetPosition);
+        GD.Print("起點位置: "+ StartPosition);
+        
         // 設置泡泡的速度
         bubble.LinearVelocity = direction * 200; // 射向點擊位置，速度為 200
 
         bubble.ElementManager.init(bubble);
         
         //bubble.ElementManager.AddElement(new NormalElement()); // 賦予屬性: 一般 
-        //bubble.ElementManager.AddElement(new FireElement()); // 賦予屬性: 火
+        bubble.ElementManager.AddElement(new FireElement()); // 賦予屬性: 火
         
         // 以下屬性 請不要混搭
         //bubble.ElementManager.AddElement(new FusionElement()); // 賦予屬性: 融合
