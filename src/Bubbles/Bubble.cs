@@ -169,6 +169,28 @@ public partial class Bubble : RigidBody2D, IBubble
 		bubble._acceleration = midpoint;
 	}
 
+	public void RevengeEffect(Bubble bubble, float mSec)
+	{
+		// 創建一個定時器
+		Timer timer = new Timer
+		{
+			WaitTime = mSec / 1000.0f, // 將毫秒轉為秒
+			OneShot = true // 設置為一次性觸發
+		};
+
+		// 將定時器添加到當前節點
+		AddChild(timer);
+
+		// 連接定時器的 timeout 信號，使用 Lambda 表達式傳遞參數
+		timer.Timeout += () =>
+		{
+			bubble.Die();
+		};
+
+		// 啟動定時器
+		timer.Start();
+	}
+
 	private void ApplyAcceleration(double delta)
 	{
 		// 加速度相關
