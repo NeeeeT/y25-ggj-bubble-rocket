@@ -81,6 +81,23 @@ public partial class BubbleShooter : Node2D
                 bubble.ElementManager.AddElement(new DeathElement()); // 賦予屬性: 障礙物
                 break;
             }
+            case "1":
+            {
+                bubble.ElementManager.AddElement(new NormalElement()); 
+                break;
+            }
+            case "2":
+            {
+                bubble.ElementManager.AddElement(new FireElement()); 
+                bubble.ElementManager.AddElement(new NormalElement());  
+                break;
+            }
+            case "3":
+            {
+                bubble.ElementManager.AddElement(new FireElement());  
+                bubble.ElementManager.AddElement(new TapeElement());
+                break;
+            }
 
             default:
             {

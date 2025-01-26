@@ -23,7 +23,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		##var shot = bubbleShot.instantiate()
 		#$ShooterCore.TEST($Marker2D.global_position, get_target_vector(1))
-		$ShooterCore.TEST($Marker2D.global_position, get_target_vector(1))
+		#$ShooterCore.TEST($Marker2D.global_position, get_target_vector(1))
+		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "3")
 		
 		
 		##$Marker2D.add_child(shot)
