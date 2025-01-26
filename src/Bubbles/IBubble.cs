@@ -24,4 +24,5 @@ public interface IBubble
 	void Die(); // 刪除泡泡
 	void HandleCollision(IBubble other); // 處理碰撞
 	void UpdateSize(); // 根據等級調整大小
+	void TapeEffect(Bubble bubble, Vector2 midpoint);
 }

@@ -20,4 +20,5 @@ public static class BubbleConfig
 
     // 質量相關
     public const float DensityFactor = 0.1f; // 質量密度係數
+    public static float MaxAccelerationSpeedAllowed = 20f;
 }
