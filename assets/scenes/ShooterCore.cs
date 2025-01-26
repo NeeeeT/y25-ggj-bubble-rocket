@@ -15,7 +15,7 @@ public partial class ShooterCore : Node2D
 	public override void _Draw()
 	{
 		
-		DrawCircle(Vector2.Zero, 121, new Color(0.3f, 0.3f, 0, 0.5f)); // 半透明紅色圓形
+		//DrawCircle(Vector2.Zero, 121, new Color(0.3f, 0.3f, 0, 0.5f)); // 半透明紅色圓形
 	}
 
 	public override void _Ready()
