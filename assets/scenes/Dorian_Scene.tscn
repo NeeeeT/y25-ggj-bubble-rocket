@@ -35,4 +35,3 @@ polygon = PackedVector2Array(-15, -39, 26, -39, 41, -34, 56, -21, 67, 0, 54, 24,
 
 [node name="Rocket" parent="." instance=ExtResource("3_gf7rx")]
 z_index = 10
-position = Vector2(65, 465)
