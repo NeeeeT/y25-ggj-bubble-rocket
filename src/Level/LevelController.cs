@@ -7,9 +7,12 @@ public partial class LevelController : Node
 	[Export] public float LevelTime = 60;
 	double countdown = 60;
 	bool isStart = false;
-
 	[Export] Label timeText;
 	[Export] ResultView resultView;
+
+	[Export] AudioStreamPlayer2D bgm;
+	[Export] AudioStreamPlayer2D endSound;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -68,6 +71,9 @@ public partial class LevelController : Node
 		// gm.StartNextLevel();
 		// show win panel
 		resultView.ShowWinView();
+
+		bgm.Stop();
+		endSound.Play();
 	}
 
 	public void SetLose()
@@ -76,6 +82,9 @@ public partial class LevelController : Node
 		GD.Print("Lose!");
 		// show lose panel
 		resultView.ShowLoseView();
+
+		bgm.Stop();
+		endSound.Play();
 	}
 
 	public void HitDanger()

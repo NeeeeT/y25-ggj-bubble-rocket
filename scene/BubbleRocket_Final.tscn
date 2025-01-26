@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://hr58bw7n5g2k"]
+[gd_scene load_steps=7 format=3 uid="uid://hr58bw7n5g2k"]
 
 [ext_resource type="Script" path="res://src/GameManager.cs" id="1_jvxo6"]
 [ext_resource type="Texture2D" uid="uid://cubuysa54s6lg" path="res://assets/ui/DALL·E 2025-01-25 17.58.07 - A simple vector-style underwater scene featuring bubbles of various sizes rising upwards. The background is a gradient of soft blue tones representing.webp" id="2_ibkgy"]
 [ext_resource type="PackedScene" uid="uid://c1ah5pltc4ipm" path="res://assets/scenes/LevelScene_Template.tscn" id="2_r3mva"]
 [ext_resource type="Script" path="res://src/View/TitleView.cs" id="2_r82qe"]
 [ext_resource type="PackedScene" uid="uid://cudeqim64x2si" path="res://assets/scenes/LevelScene_Template2.tscn" id="3_sq8pe"]
+[ext_resource type="AudioStream" uid="uid://dlmcbx4sv4a8" path="res://assets/audios/ambience/Ambience_loop.wav" id="6_h77er"]
 
 [node name="BubbleRocketFinal" type="Node2D"]
 
@@ -95,3 +96,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Exit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(854, 406)
+stream = ExtResource("6_h77er")
+volume_db = -1.0
+autoplay = true

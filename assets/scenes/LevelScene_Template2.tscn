@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cudeqim64x2si"]
+[gd_scene load_steps=11 format=4 uid="uid://cudeqim64x2si"]
 
 [ext_resource type="Script" path="res://src/Level/LevelController.cs" id="1_tdps7"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="2_63kxx"]
@@ -7,15 +7,19 @@
 [ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="5_blipx"]
 [ext_resource type="Script" path="res://src/Level/GoalArea.cs" id="6_7gsye"]
 [ext_resource type="Script" path="res://src/View/ResultView.cs" id="7_0o1dt"]
+[ext_resource type="AudioStream" uid="uid://bb1607t22v2ic" path="res://assets/audios/bgm/bgm2.wav" id="8_thek5"]
+[ext_resource type="AudioStream" uid="uid://deu3qv5ql12sq" path="res://assets/audios/bgm/bgmend.wav" id="8_ugffu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vimtr"]
 size = Vector2(1814, 628)
 
-[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView")]
+[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "bgm", "endSound")]
 script = ExtResource("1_tdps7")
 LevelTime = 3.0
 timeText = NodePath("CanvasLayer2/Control/TimeText")
 resultView = NodePath("CanvasLayer2/ResultPanel")
+bgm = NodePath("BGM")
+endSound = NodePath("endSound")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -4047.0
@@ -192,3 +196,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Retry"
+
+[node name="endSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ugffu")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_thek5")
+autoplay = true
