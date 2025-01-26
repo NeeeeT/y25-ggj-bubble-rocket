@@ -94,8 +94,9 @@ public partial class BubbleShooter : Node2D
             }
             case "3":
             {
-                bubble.ElementManager.AddElement(new FireElement());  
-                bubble.ElementManager.AddElement(new TapeElement());
+                bubble.ElementManager.AddElement(new FireElement());
+                BubbleConfig.CollisionSplitThreshold = 2;
+                BubbleConfig.ExplosionPow = 80;
                 break;
             }
 
