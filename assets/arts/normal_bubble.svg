@@ -5,7 +5,7 @@
    viewBox="0 0 39.687498 39.687501"
    version="1.1"
    id="svg8"
-   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="normal_bubble.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -50,6 +50,61 @@
        mirror_copies="false"
        split_items="false"
        link_styles="false" />
+    <filter
+       inkscape:label="Jam Spread"
+       inkscape:menu="Textures"
+       inkscape:menu-tooltip="Glossy clumpy jam spread"
+       style="color-interpolation-filters:sRGB;"
+       id="filter2"
+       x="-0.14634163"
+       y="-0.14634163"
+       width="1.2926833"
+       height="1.2926833">
+      <feGaussianBlur
+         stdDeviation="1"
+         in="SourceGraphic"
+         result="result0"
+         id="feGaussianBlur1" />
+      <feTurbulence
+         result="result1"
+         numOctaves="7"
+         seed="488"
+         baseFrequency="0.017"
+         type="turbulence"
+         id="feTurbulence1" />
+      <feComposite
+         in="result0"
+         in2="result1"
+         operator="out"
+         result="result2"
+         id="feComposite1" />
+      <feGaussianBlur
+         stdDeviation="0.5"
+         result="result5"
+         id="feGaussianBlur2" />
+      <feSpecularLighting
+         in="result5"
+         specularExponent="100"
+         specularConstant="4"
+         result="result4"
+         surfaceScale="1.5"
+         id="feSpecularLighting2">
+        <feDistantLight
+           azimuth="225"
+           elevation="62"
+           id="feDistantLight2" />
+      </feSpecularLighting>
+      <feComposite
+         operator="atop"
+         in="result4"
+         in2="result2"
+         result="result91"
+         id="feComposite2" />
+      <feBlend
+         mode="multiply"
+         in2="result91"
+         id="feBlend2" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -59,8 +114,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="74.821429"
-     inkscape:cy="85.714286"
+     inkscape:cx="75"
+     inkscape:cy="85.892857"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -69,10 +124,10 @@
      inkscape:showpageshadow="2"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:window-width="1920"
-     inkscape:window-height="1051"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:window-width="1312"
+     inkscape:window-height="728"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -101,7 +156,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:none;stroke:#ffffff;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       style="fill:#fafafa;stroke:#ffffff;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke;fill-opacity:1;filter:url(#filter2)"
        id="path1"
        cx="19.84375"
        cy="19.84375"
