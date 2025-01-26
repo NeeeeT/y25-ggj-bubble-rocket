@@ -1,7 +1,7 @@
 public static class BubbleConfig
 {
     public const float SizeScaleBase = 50.0f; // 用於碰撞形狀比例計算的基準值
-    public const int MaxBubbleCount = 100; // 泡泡數量上限
+    public const int MaxBubbleCount = 3000; // 泡泡數量上限
     
     public static int MaxLivableLevel = 60; // 泡泡等級超過則撐破
     
