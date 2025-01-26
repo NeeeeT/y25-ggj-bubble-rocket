@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqh8jvv1rulh1"]
+
+[ext_resource type="Script" path="res://assets/scenes/ShooterCore.cs" id="1_ge0lu"]
+[ext_resource type="Script" path="res://src/Bubbles/BubbleShooter.cs" id="1_q4rhh"]
+[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://hernan/Bubble.tscn" id="2_yhsq7"]
+[ext_resource type="Script" path="res://src/Bubbles/BubbleManager.cs" id="3_i6t7g"]
+
+[node name="ShooterCore" type="Node2D"]
+script = ExtResource("1_ge0lu")
+
+[node name="BubbleShooter" type="Node2D" parent="."]
+script = ExtResource("1_q4rhh")
+BubbleScene = ExtResource("2_yhsq7")
+BubbleManagerPath = NodePath("../BubbleManager")
+
+[node name="BubbleManager" type="Node" parent="."]
+script = ExtResource("3_i6t7g")
+BubbleScene = ExtResource("2_yhsq7")
