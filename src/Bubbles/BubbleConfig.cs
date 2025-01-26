@@ -5,14 +5,14 @@ public static class BubbleConfig
     
     public static int MaxLivableLevel = 60; // 泡泡等級超過則撐破
     
-    public const float CollisionCheckDuration = 20.0f; // 泡泡寂寞死前的容許時長
+    public const float CollisionCheckDuration = 2000.0f; // 泡泡寂寞死前的容許時長
     public const int CollisionSplitThreshold = 2; // 分裂的碰撞次數條件
     
     public const float MinRandomVelocity = -500; // 隨機初始速度
     public const float MaxRandomVelocity = 500;
 
     // 成長相關
-    public const float SizeGrowthFactor = 1.2f; // 每等級大小增長因子
+    public const float SizeGrowthFactor = 5.2f; // 每等級大小增長因子
 
     // 浮力相關
     public const float BuoyancyCoefficient = 0.05f; // 浮力係數 k
