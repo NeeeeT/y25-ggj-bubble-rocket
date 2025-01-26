@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://cxuni7e2lqk3g"]
+[gd_scene load_steps=6 format=4 uid="uid://cxuni7e2lqk3g"]
 
 [ext_resource type="Script" path="res://src/MainScene.cs" id="1_mtuc4"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="1_sauhs"]
 [ext_resource type="Texture2D" uid="uid://b0auhn7c5ln0y" path="res://assets/arts/rocket.svg" id="2_6qjbd"]
 [ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://hernan/Bubble.tscn" id="2_lko32"]
 [ext_resource type="PackedScene" uid="uid://c46aikvuy54y1" path="res://hernan/Rocket.tscn" id="3_gf7rx"]
-[ext_resource type="PackedScene" uid="uid://d3jm5gjrjduhi" path="res://assets/scenes/bubble_manager.tscn" id="5_ickvb"]
-[ext_resource type="PackedScene" uid="uid://o3dpavfpy55x" path="res://assets/scenes/bubble_shooter.tscn" id="6_bvsof"]
 
 [node name="DorianScene" type="Node2D"]
 script = ExtResource("1_mtuc4")
@@ -38,9 +36,3 @@ polygon = PackedVector2Array(-15, -39, 26, -39, 41, -34, 56, -21, 67, 0, 54, 24,
 [node name="Rocket" parent="." instance=ExtResource("3_gf7rx")]
 z_index = 10
 position = Vector2(65, 465)
-
-[node name="BubbleShooter" parent="." instance=ExtResource("6_bvsof")]
-position = Vector2(-770, 803)
-
-[node name="BubbleManager" parent="." instance=ExtResource("5_ickvb")]
-MaxBubbleCount = 16
