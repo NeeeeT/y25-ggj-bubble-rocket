@@ -89,7 +89,7 @@ public partial class Bubble : RigidBody2D, IBubble
 
 		if(VelocityFactor != 1.0f)
 			this.LinearVelocity *= VelocityFactor;
-		//this.ApplyAcceleration(delta);
+		this.ApplyAcceleration(delta);
 	}
 
 	private void UpdateLabel()
