@@ -5,7 +5,7 @@ public partial class GameManager : Node
 {
 	[Export] public PackedScene[] levels;
 	[Export] public int currentLevelId = 0;
-
+    public bool IsFinalLevel => currentLevelId + 1 == levels.Length;
 	[Export] public TitleView titleView;
 
     private LevelController currentLevelController = null;
@@ -38,7 +38,7 @@ public partial class GameManager : Node
 
 	public void StartNextLevel()
 	{
-GD.Print("StartNextLevel");
+        GD.Print("StartNextLevel");
 		// reset player
 		// reset current level
         if (currentLevelId == levels.Length){
