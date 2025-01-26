@@ -37,7 +37,8 @@ public partial class BubbleShooter : Node2D
     public void ShootBubble(Vector2 targetPosition)
     {
         // 生成泡泡
-        var bubble = _bubbleManager.CreateBubble(this.Position, BubbleConfig.SizeScaleBase);
+        var bubble = _bubbleManager.CreateBubble(this.GlobalPosition, BubbleConfig.SizeScaleBase);
+        //GD.Print("泡泡出現位置: "+ Position);
         if (bubble == null)
         {
             GD.Print("泡泡射出失敗");
