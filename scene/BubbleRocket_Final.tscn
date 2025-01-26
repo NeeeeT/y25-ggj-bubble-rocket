@@ -1,19 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://hr58bw7n5g2k"]
+[gd_scene load_steps=6 format=3 uid="uid://hr58bw7n5g2k"]
 
 [ext_resource type="Script" path="res://src/GameManager.cs" id="1_jvxo6"]
 [ext_resource type="Texture2D" uid="uid://cubuysa54s6lg" path="res://assets/ui/DALL·E 2025-01-25 17.58.07 - A simple vector-style underwater scene featuring bubbles of various sizes rising upwards. The background is a gradient of soft blue tones representing.webp" id="2_ibkgy"]
+[ext_resource type="PackedScene" uid="uid://c1ah5pltc4ipm" path="res://assets/scenes/LevelScene_Template.tscn" id="2_r3mva"]
 [ext_resource type="Script" path="res://src/View/TitleView.cs" id="2_r82qe"]
+[ext_resource type="PackedScene" uid="uid://cudeqim64x2si" path="res://assets/scenes/LevelScene_Template2.tscn" id="3_sq8pe"]
 
 [node name="BubbleRocketFinal" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("titleView")]
 script = ExtResource("1_jvxo6")
-levels = Array[PackedScene]([])
-titleView = NodePath("../CanvasLayer/UI/Title")
+levels = Array[PackedScene]([ExtResource("2_r3mva"), ExtResource("3_sq8pe")])
+titleView = NodePath("../CanvasLayer/Title")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,8 +24,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Control" parent="CanvasLayer/UI" node_paths=PackedStringArray("startBtn", "exitBtn")]
-layout_mode = 1
+[node name="Title" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("startBtn", "exitBtn")]
+z_index = 20
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,7 +36,7 @@ script = ExtResource("2_r82qe")
 startBtn = NodePath("startBtn")
 exitBtn = NodePath("exitBtn")
 
-[node name="Bg" type="TextureRect" parent="CanvasLayer/UI/Title"]
+[node name="Bg" type="TextureRect" parent="CanvasLayer/Title"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ibkgy")
 
-[node name="Label" type="Label" parent="CanvasLayer/UI/Title"]
+[node name="Label" type="Label" parent="CanvasLayer/Title"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -60,7 +64,7 @@ text = "Bubble Rocket"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="startBtn" type="Button" parent="CanvasLayer/UI/Title"]
+[node name="startBtn" type="Button" parent="CanvasLayer/Title"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -76,7 +80,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Start!"
 
-[node name="exitBtn" type="Button" parent="CanvasLayer/UI/Title"]
+[node name="exitBtn" type="Button" parent="CanvasLayer/Title"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

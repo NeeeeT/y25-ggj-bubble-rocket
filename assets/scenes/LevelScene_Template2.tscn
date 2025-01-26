@@ -1,20 +1,21 @@
-[gd_scene load_steps=9 format=4 uid="uid://c1ah5pltc4ipm"]
+[gd_scene load_steps=9 format=4 uid="uid://cudeqim64x2si"]
 
-[ext_resource type="Script" path="res://src/Level/LevelController.cs" id="1_pjoqh"]
-[ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="2_g87i0"]
-[ext_resource type="PackedScene" uid="uid://c46aikvuy54y1" path="res://hernan/Rocket.tscn" id="4_5bipf"]
-[ext_resource type="PackedScene" path="res://assets/scenes/bubble_shooter.tscn" id="5_4w4ii"]
-[ext_resource type="Script" path="res://src/Level/GoalArea.cs" id="6_3d65y"]
-[ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="6_656gh"]
-[ext_resource type="Script" path="res://src/View/ResultView.cs" id="7_y5js1"]
+[ext_resource type="Script" path="res://src/Level/LevelController.cs" id="1_tdps7"]
+[ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="2_63kxx"]
+[ext_resource type="PackedScene" uid="uid://c46aikvuy54y1" path="res://hernan/Rocket.tscn" id="3_c4saw"]
+[ext_resource type="PackedScene" path="res://assets/scenes/bubble_shooter.tscn" id="4_h1tj3"]
+[ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="5_blipx"]
+[ext_resource type="Script" path="res://src/Level/GoalArea.cs" id="6_7gsye"]
+[ext_resource type="Script" path="res://src/View/ResultView.cs" id="7_0o1dt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vimtr"]
 size = Vector2(1814, 628)
 
 [node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView")]
-script = ExtResource("1_pjoqh")
-timeText = NodePath("CanvasLayer/Control/TimeText")
-resultView = NodePath("CanvasLayer/ResultPanel")
+script = ExtResource("1_tdps7")
+LevelTime = 3.0
+timeText = NodePath("CanvasLayer2/Control/TimeText")
+resultView = NodePath("CanvasLayer2/ResultPanel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -4047.0
@@ -27,31 +28,31 @@ color = Color(0.491451, 0.716801, 0.870178, 1)
 position = Vector2(-57, 0)
 scale = Vector2(1.01454, 0.928298)
 tile_map_data = PackedByteArray("AAD7/+z/AQAFAAEAADAFAOz/AQAFAAAAAAAFAO3/AQADAAEAAAAFAO7/AQADAAEAAAAFAO//AQADAAEAAAAFAPD/AQADAAEAAAAFAPH/AQADAAEAAAAFAPL/AQADAAEAAAAFAPP/AQADAAEAAAAFAPT/AQADAAEAAAAFAPX/AQADAAEAAAAFAPb/AQADAAEAAAAFAPf/AQADAAEAAAAFAPj/AQADAAEAAAAFAPn/AQADAAEAAAAFAPr/AQADAAEAAAAFAPv/AQADAAEAAAAFAPz/AQADAAEAAAAFAP3/AQADAAEAAAAFAP7/AQADAAEAAAAFAP//AQADAAEAAAAFAAAAAQADAAEAAAAFAAEAAQADAAEAAAAFAAIAAQADAAEAAAAFAAMAAQADAAEAAAAFAAQAAQAFAAEAAAD7/+3/AQADAAEAAAD7/+7/AQADAAEAAAD7/+//AQADAAEAAAD7//D/AQADAAEAAAD7//H/AQADAAEAAAD7//L/AQADAAEAAAD7//P/AQADAAEAAAD7//T/AQADAAEAAAD7//X/AQADAAEAAAD7//b/AQADAAEAAAD7//f/AQADAAEAAAD7//j/AQADAAEAAAD7//n/AQADAAEAAAD7//r/AQADAAEAAAD7//v/AQADAAEAAAD7//z/AQADAAEAAAD7//3/AQADAAEAAAD7//7/AQADAAEAAAD7////AQADAAEAAAD7/wAAAQADAAEAAAD7/wEAAQADAAEAAAD7/wIAAQADAAEAAAD7/wMAAQADAAEAAAD7/wQAAQAEAAEAAAD8/wQAAQABAAMAAAD9/wQAAQABAAMAAAD+/wQAAQABAAMAAAD//wQAAQABAAMAAAAAAAQAAQABAAMAAAABAAQAAQABAAMAAAACAAQAAQABAAMAAAADAAQAAQABAAMAAAAEAAQAAQABAAMAAAA=")
-tile_set = ExtResource("2_g87i0")
+tile_set = ExtResource("2_63kxx")
 
-[node name="Rocket" parent="." instance=ExtResource("4_5bipf")]
-z_index = 1
+[node name="Rocket" parent="." instance=ExtResource("3_c4saw")]
+z_index = 10
 position = Vector2(65, 465)
 
-[node name="BubbleShooter" parent="." instance=ExtResource("5_4w4ii")]
+[node name="BubbleShooter" parent="." instance=ExtResource("4_h1tj3")]
 position = Vector2(-770, 803)
 
-[node name="BubbleManager" parent="." instance=ExtResource("6_656gh")]
+[node name="BubbleManager" parent="." instance=ExtResource("5_blipx")]
 MaxBubbleCount = 16
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("controller")]
 position = Vector2(-4, -3681)
 collision_mask = 513
-script = ExtResource("6_3d65y")
+script = ExtResource("6_7gsye")
 controller = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(47, -170)
 shape = SubResource("RectangleShape2D_vimtr")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer2"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeText" type="Label" parent="CanvasLayer/Control"]
+[node name="TimeText" type="Label" parent="CanvasLayer2/Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -75,7 +76,7 @@ text = "99:99"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResultPanel" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("winTitle", "loseTitle", "returnTitleBtn", "nextLevelBtn", "retryLevelBtn")]
+[node name="ResultPanel" type="Control" parent="CanvasLayer2" node_paths=PackedStringArray("winTitle", "loseTitle", "returnTitleBtn", "nextLevelBtn", "retryLevelBtn")]
 visible = false
 z_index = 10
 layout_mode = 3
@@ -84,14 +85,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("7_y5js1")
+script = ExtResource("7_0o1dt")
 winTitle = NodePath("WinTitle")
 loseTitle = NodePath("LoseTitle")
 returnTitleBtn = NodePath("ReturnTitle")
 nextLevelBtn = NodePath("NextLevel")
 retryLevelBtn = NodePath("Retry")
 
-[node name="Bg" type="ColorRect" parent="CanvasLayer/ResultPanel"]
+[node name="Bg" type="ColorRect" parent="CanvasLayer2/ResultPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,7 +101,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.427493, 0.427493, 0.427493, 0.662745)
 
-[node name="WinTitle" type="Label" parent="CanvasLayer/ResultPanel"]
+[node name="WinTitle" type="Label" parent="CanvasLayer2/ResultPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -121,7 +122,7 @@ text = "Level Completed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LoseTitle" type="Label" parent="CanvasLayer/ResultPanel"]
+[node name="LoseTitle" type="Label" parent="CanvasLayer2/ResultPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -143,7 +144,7 @@ text = "Fail..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ReturnTitle" type="Button" parent="CanvasLayer/ResultPanel"]
+[node name="ReturnTitle" type="Button" parent="CanvasLayer2/ResultPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -159,7 +160,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Return Title"
 
-[node name="NextLevel" type="Button" parent="CanvasLayer/ResultPanel"]
+[node name="NextLevel" type="Button" parent="CanvasLayer2/ResultPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -175,7 +176,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Next"
 
-[node name="Retry" type="Button" parent="CanvasLayer/ResultPanel"]
+[node name="Retry" type="Button" parent="CanvasLayer2/ResultPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
