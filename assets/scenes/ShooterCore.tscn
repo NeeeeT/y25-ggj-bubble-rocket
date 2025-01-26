@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqh8jvv1rulh1"]
+[gd_scene load_steps=5 format=3 uid="uid://dam2tv8v6k3qv"]
 
 [ext_resource type="Script" path="res://assets/scenes/ShooterCore.cs" id="1_ge0lu"]
 [ext_resource type="Script" path="res://src/Bubbles/BubbleShooter.cs" id="1_q4rhh"]
-[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://hernan/Bubble.tscn" id="2_yhsq7"]
+[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://assets/scenes/Bubble.tscn" id="2_yhsq7"]
 [ext_resource type="Script" path="res://src/Bubbles/BubbleManager.cs" id="3_i6t7g"]
 
 [node name="ShooterCore" type="Node2D"]

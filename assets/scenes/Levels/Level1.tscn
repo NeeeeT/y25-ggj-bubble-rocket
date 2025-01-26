@@ -39,7 +39,7 @@ position = Vector2(65, 465)
 position = Vector2(-770, 803)
 
 [node name="BubbleManager" parent="." instance=ExtResource("5_jih0x")]
-MaxBubbleCount = 3000
+MaxBubbleCount = 100
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("controller")]
 position = Vector2(-4, -3621)

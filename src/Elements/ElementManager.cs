@@ -23,7 +23,7 @@ public class ElementManager
         if (element is NormalElement)
         {
             m_bubble._Modulate = new Color(0.2f, 0.2f, 0.8f);
-            m_bubble.VelocityFactor = 0.99f;
+            m_bubble.VelocityFactor = 0.999f;
         }
 
         if (element is TapeElement)

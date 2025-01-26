@@ -1,31 +1,31 @@
 [gd_scene load_steps=30 format=3 uid="uid://c46aikvuy54y1"]
 
-[ext_resource type="Texture2D" uid="uid://b0auhn7c5ln0y" path="res://assets/arts/rocket.svg" id="1_4xtlb"]
-[ext_resource type="Texture2D" uid="uid://b3ls65kplj0ke" path="res://assets/arts/turret.svg" id="2_7s78c"]
+[ext_resource type="Texture2D" uid="uid://tou4h3fhniic" path="res://assets/arts/rocket.svg" id="1_4xtlb"]
+[ext_resource type="Texture2D" uid="uid://bcun5y0taliwv" path="res://assets/arts/turret.svg" id="2_7s78c"]
 [ext_resource type="Script" path="res://assets/scenes/TurretScript.gd" id="3_uredx"]
-[ext_resource type="PackedScene" uid="uid://bqh8jvv1rulh1" path="res://assets/scenes/ShooterCore.tscn" id="4_016mo"]
-[ext_resource type="AudioStream" uid="uid://cjhyydwc5rqu2" path="res://assets/audios/shoot/Shoot1.wav" id="4_icfqk"]
-[ext_resource type="AudioStream" uid="uid://cja4rqk121qbt" path="res://assets/audios/shoot/Shoot2.wav" id="5_8vcj3"]
-[ext_resource type="AudioStream" uid="uid://cr45chnqv031b" path="res://assets/audios/shoot/Shoot11.wav" id="6_nfpnv"]
-[ext_resource type="AudioStream" uid="uid://c6ug87n3tlpfx" path="res://assets/audios/shoot/Shoot12.wav" id="7_pwgs2"]
-[ext_resource type="AudioStream" uid="uid://yh0pn5h8mwa0" path="res://assets/audios/shoot/Shoot13.wav" id="8_4k2ug"]
-[ext_resource type="AudioStream" uid="uid://0p6y74q4u6ga" path="res://assets/audios/shoot/Shoot14.wav" id="9_kdjnp"]
-[ext_resource type="AudioStream" uid="uid://dinmldqkbk5al" path="res://assets/audios/shoot/Shoot15.wav" id="10_tbo2l"]
-[ext_resource type="AudioStream" uid="uid://c0g61ets70png" path="res://assets/audios/shoot/Shoot16.wav" id="11_2qarj"]
-[ext_resource type="AudioStream" uid="uid://bl0dsvggq2n6o" path="res://assets/audios/shoot/Shoot17.wav" id="12_dh5qm"]
-[ext_resource type="AudioStream" uid="uid://dv47s73etrtne" path="res://assets/audios/shoot/Shoot18.wav" id="13_xrkbt"]
-[ext_resource type="AudioStream" uid="uid://d3vjxoqnw3k47" path="res://assets/audios/shoot/Shoot19.wav" id="14_sdqy2"]
-[ext_resource type="AudioStream" uid="uid://coo77sm2u8pp" path="res://assets/audios/shoot/Shoot20.wav" id="15_tc3nt"]
-[ext_resource type="AudioStream" uid="uid://xqfcer85xprk" path="res://assets/audios/shoot/Shoot3.wav" id="16_3sp3w"]
-[ext_resource type="AudioStream" uid="uid://8rqwoj2toh0a" path="res://assets/audios/shoot/Shoot21.wav" id="17_rbk67"]
-[ext_resource type="AudioStream" uid="uid://ce35o1ygaicvs" path="res://assets/audios/shoot/Shoot4.wav" id="18_paske"]
-[ext_resource type="AudioStream" uid="uid://8ts1ldmkrfx0" path="res://assets/audios/shoot/Shoot5.wav" id="19_aum28"]
-[ext_resource type="AudioStream" uid="uid://dcqh7c2ovl7cb" path="res://assets/audios/shoot/Shoot6.wav" id="20_4y3yp"]
-[ext_resource type="AudioStream" uid="uid://bhkcmm5uhc7pa" path="res://assets/audios/shoot/Shoot7.wav" id="21_x34pq"]
-[ext_resource type="AudioStream" uid="uid://mo6tsuyaa4pn" path="res://assets/audios/shoot/Shoot8.wav" id="22_0dgpd"]
-[ext_resource type="AudioStream" uid="uid://dpv1obxmc1sg5" path="res://assets/audios/shoot/Shoot9.wav" id="23_s6y3p"]
-[ext_resource type="AudioStream" uid="uid://bh6kk6jrcqwpi" path="res://assets/audios/shoot/Shoot10.wav" id="24_nyi6w"]
-[ext_resource type="AudioStream" uid="uid://c2ptt6jntcyxv" path="res://assets/audios/turretRotating/TurretRotating_Loop.wav" id="25_q01pr"]
+[ext_resource type="AudioStream" uid="uid://b563dkdinwce6" path="res://assets/audios/shoot/Shoot1.wav" id="4_icfqk"]
+[ext_resource type="PackedScene" uid="uid://dam2tv8v6k3qv" path="res://assets/scenes/ShooterCore.tscn" id="4_uu052"]
+[ext_resource type="AudioStream" uid="uid://b2yus0vk8m4m2" path="res://assets/audios/shoot/Shoot2.wav" id="5_8vcj3"]
+[ext_resource type="AudioStream" uid="uid://cd0auqetv6w8l" path="res://assets/audios/shoot/Shoot11.wav" id="6_nfpnv"]
+[ext_resource type="AudioStream" uid="uid://b0fve002f841t" path="res://assets/audios/shoot/Shoot12.wav" id="7_pwgs2"]
+[ext_resource type="AudioStream" uid="uid://bj2q4msoujw7c" path="res://assets/audios/shoot/Shoot13.wav" id="8_4k2ug"]
+[ext_resource type="AudioStream" uid="uid://bsu2na480358" path="res://assets/audios/shoot/Shoot14.wav" id="9_kdjnp"]
+[ext_resource type="AudioStream" uid="uid://b3xlu6qvo3osj" path="res://assets/audios/shoot/Shoot15.wav" id="10_tbo2l"]
+[ext_resource type="AudioStream" uid="uid://dtj4dqtmd2shd" path="res://assets/audios/shoot/Shoot16.wav" id="11_2qarj"]
+[ext_resource type="AudioStream" uid="uid://r6qya5momkbg" path="res://assets/audios/shoot/Shoot17.wav" id="12_dh5qm"]
+[ext_resource type="AudioStream" uid="uid://83pkpys46el6" path="res://assets/audios/shoot/Shoot18.wav" id="13_xrkbt"]
+[ext_resource type="AudioStream" uid="uid://d1id704fu0afi" path="res://assets/audios/shoot/Shoot19.wav" id="14_sdqy2"]
+[ext_resource type="AudioStream" uid="uid://dlc7xxib0in3t" path="res://assets/audios/shoot/Shoot20.wav" id="15_tc3nt"]
+[ext_resource type="AudioStream" uid="uid://d38sjcn7a7sm6" path="res://assets/audios/shoot/Shoot3.wav" id="16_3sp3w"]
+[ext_resource type="AudioStream" uid="uid://wmlnq6snj5la" path="res://assets/audios/shoot/Shoot21.wav" id="17_rbk67"]
+[ext_resource type="AudioStream" uid="uid://dlqm4jxxkb76k" path="res://assets/audios/shoot/Shoot4.wav" id="18_paske"]
+[ext_resource type="AudioStream" uid="uid://4b7kqfhfj2uj" path="res://assets/audios/shoot/Shoot5.wav" id="19_aum28"]
+[ext_resource type="AudioStream" uid="uid://dki5fn1gonlfi" path="res://assets/audios/shoot/Shoot6.wav" id="20_4y3yp"]
+[ext_resource type="AudioStream" uid="uid://2v4e5ygnxdhf" path="res://assets/audios/shoot/Shoot7.wav" id="21_x34pq"]
+[ext_resource type="AudioStream" uid="uid://c4r3ileafsg4b" path="res://assets/audios/shoot/Shoot8.wav" id="22_0dgpd"]
+[ext_resource type="AudioStream" uid="uid://ce3sf03gnggn" path="res://assets/audios/shoot/Shoot9.wav" id="23_s6y3p"]
+[ext_resource type="AudioStream" uid="uid://dw1pr2a0vhbf3" path="res://assets/audios/shoot/Shoot10.wav" id="24_nyi6w"]
+[ext_resource type="AudioStream" uid="uid://dgf8jtjx6367i" path="res://assets/audios/turretRotating/TurretRotating_Loop.wav" id="25_q01pr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8u7o5"]
 bounce = 0.15
@@ -60,6 +60,7 @@ stream_20/stream = ExtResource("17_rbk67")
 [node name="Rocket" type="Node2D"]
 
 [node name="RocketBody" type="RigidBody2D" parent="."]
+collision_layer = 513
 physics_material_override = SubResource("PhysicsMaterial_8u7o5")
 gravity_scale = 0.0
 can_sleep = false
@@ -79,10 +80,10 @@ script = ExtResource("3_uredx")
 shoot_player = NodePath("../Camera2D/shoot")
 rotate_player = NodePath("../Camera2D/rotate")
 
-[node name="ShooterCore" parent="RocketBody/Turret" instance=ExtResource("4_016mo")]
-
 [node name="Marker2D" type="Marker2D" parent="RocketBody/Turret"]
-position = Vector2(70, 0)
+position = Vector2(103, 0)
+
+[node name="ShooterCore" parent="RocketBody/Turret" instance=ExtResource("4_uu052")]
 
 [node name="Camera2D" type="Camera2D" parent="RocketBody"]
 position = Vector2(3, -1)

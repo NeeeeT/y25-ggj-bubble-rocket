@@ -13,12 +13,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vimtr"]
 size = Vector2(1814, 628)
 
-[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "bgm", "endSound")]
+[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "endSound")]
 script = ExtResource("1_tdps7")
 LevelTime = 3.0
 timeText = NodePath("CanvasLayer2/Control/TimeText")
 resultView = NodePath("CanvasLayer2/ResultPanel")
-bgm = NodePath("BGM")
 endSound = NodePath("endSound")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -42,7 +41,7 @@ position = Vector2(65, 465)
 position = Vector2(-770, 803)
 
 [node name="BubbleManager" parent="." instance=ExtResource("5_blipx")]
-MaxBubbleCount = 16
+MaxBubbleCount = 100
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("controller")]
 position = Vector2(-4, -3681)

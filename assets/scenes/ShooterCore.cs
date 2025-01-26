@@ -9,13 +9,14 @@ public partial class ShooterCore : Node2D
 	public void TEST( Vector2 startPosition, Vector2 position)
 	{
 		GD.Print("成功呼叫C#腳本: "+position);
-		_bubbleShooter.ShootBubble(startPosition, position);
+		// _bubbleShooter.ShootBubble(startPosition, position);
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position, "Normal");
 	}
 	
 	public void TEST_Fire( Vector2 startPosition, Vector2 position)
 	{
 		GD.Print("成功呼叫C#腳本: "+position);
-		_bubbleShooter.ShootBubble(startPosition, position, "Fire");
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position, "Fire");
 	}
 	
 	public void TEST_Fusion( Vector2 startPosition, Vector2 position)

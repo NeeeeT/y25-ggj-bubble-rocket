@@ -21,17 +21,17 @@ public partial class BubbleShooter : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left &&
-            mouseEvent.Pressed)
-        {
-            // 轉換滑鼠點擊位置到 Node2D 的本地座標
-            Vector2 targetPosition = GetGlobalMousePosition();
+        // if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left &&
+        //     mouseEvent.Pressed)
+        // {
+        //     // 轉換滑鼠點擊位置到 Node2D 的本地座標
+        //     Vector2 targetPosition = GetGlobalMousePosition();
 
-            ShootBubble(Vector2.Zero, targetPosition);
+        //     ShootBubble(Vector2.Zero, targetPosition);
 
 
-            GD.Print("射擊" + mouseEvent.Position);
-        }
+        //     GD.Print("射擊" + mouseEvent.Position);
+        // }
     }
 
     public void ShootBubble(Vector2 StartPosition,Vector2 targetPosition, String element = "")
