@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://cxuni7e2lqk3g"]
+[gd_scene load_steps=8 format=4 uid="uid://cxuni7e2lqk3g"]
 
 [ext_resource type="Script" path="res://src/MainScene.cs" id="1_mtuc4"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="1_sauhs"]
 [ext_resource type="Texture2D" uid="uid://tou4h3fhniic" path="res://assets/arts/rocket.svg" id="2_6qjbd"]
-[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://assets/scenes/Bubble.tscn" id="2_lko32"]
+[ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://hernan/Bubble.tscn" id="2_lko32"]
 [ext_resource type="PackedScene" uid="uid://c46aikvuy54y1" path="res://hernan/Rocket.tscn" id="3_gf7rx"]
-[ext_resource type="Texture2D" uid="uid://cubuysa54s6lg" path="res://assets/ui/DALL·E 2025-01-25 17.58.07 - A simple vector-style underwater scene featuring bubbles of various sizes rising upwards. The background is a gradient of soft blue tones representing.webp" id="3_owsth"]
 [ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="5_ickvb"]
 [ext_resource type="PackedScene" path="res://assets/scenes/bubble_shooter.tscn" id="6_bvsof"]
 
@@ -40,41 +39,8 @@ polygon = PackedVector2Array(-15, -39, 26, -39, 41, -34, 56, -21, 67, 0, 54, 24,
 z_index = 10
 position = Vector2(65, 465)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Title" type="Control" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bg" type="TextureRect" parent="CanvasLayer/Control/Title"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_owsth")
-
-[node name="Button" type="Button" parent="CanvasLayer/Control/Title"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
 [node name="BubbleShooter" parent="." instance=ExtResource("6_bvsof")]
 position = Vector2(-770, 803)
 
 [node name="BubbleManager" parent="." instance=ExtResource("5_ickvb")]
-MaxBubbleCount = 5
+MaxBubbleCount = 16

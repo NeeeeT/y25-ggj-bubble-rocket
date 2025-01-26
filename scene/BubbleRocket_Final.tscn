@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://hr58bw7n5g2k"]
+
+[ext_resource type="Script" path="res://src/GameManager.cs" id="1_jvxo6"]
+[ext_resource type="Texture2D" uid="uid://cubuysa54s6lg" path="res://assets/ui/DALL·E 2025-01-25 17.58.07 - A simple vector-style underwater scene featuring bubbles of various sizes rising upwards. The background is a gradient of soft blue tones representing.webp" id="2_ibkgy"]
+[ext_resource type="Script" path="res://src/View/TitleView.cs" id="2_r82qe"]
+
+[node name="BubbleRocketFinal" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("titleView")]
+script = ExtResource("1_jvxo6")
+levels = Array[PackedScene]([])
+titleView = NodePath("../CanvasLayer/UI/Title")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Control" parent="CanvasLayer/UI" node_paths=PackedStringArray("startBtn", "exitBtn")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r82qe")
+startBtn = NodePath("startBtn")
+exitBtn = NodePath("exitBtn")
+
+[node name="Bg" type="TextureRect" parent="CanvasLayer/UI/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ibkgy")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/Title"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -51.0
+offset_top = 256.0
+offset_right = 51.0
+offset_bottom = 404.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.177911, 0.527382, 0.985121, 1)
+theme_override_colors/font_shadow_color = Color(0.0322483, 0.388838, 0.799913, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 84
+text = "Bubble Rocket"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="startBtn" type="Button" parent="CanvasLayer/UI/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 76.0
+offset_right = 150.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Start!"
+
+[node name="exitBtn" type="Button" parent="CanvasLayer/UI/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 207.0
+offset_right = 150.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Exit"
