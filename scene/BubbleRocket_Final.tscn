@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cubuysa54s6lg" path="res://assets/ui/DALL·E 2025-01-25 17.58.07 - A simple vector-style underwater scene featuring bubbles of various sizes rising upwards. The background is a gradient of soft blue tones representing.webp" id="2_ibkgy"]
 [ext_resource type="PackedScene" uid="uid://c1ah5pltc4ipm" path="res://assets/scenes/LevelScene_Template.tscn" id="2_r3mva"]
 [ext_resource type="Script" path="res://src/View/TitleView.cs" id="2_r82qe"]
-[ext_resource type="PackedScene" uid="uid://cudeqim64x2si" path="res://assets/scenes/LevelScene_Template2.tscn" id="3_sq8pe"]
+[ext_resource type="PackedScene" uid="uid://884jpb8qb62g" path="res://assets/scenes/Levels/Level1.tscn" id="3_ct4qe"]
 [ext_resource type="AudioStream" uid="uid://dlmcbx4sv4a8" path="res://assets/audios/ambience/Ambience_loop.wav" id="6_h77er"]
 
 [node name="BubbleRocketFinal" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("titleView")]
 script = ExtResource("1_jvxo6")
-levels = Array[PackedScene]([ExtResource("2_r3mva"), ExtResource("3_sq8pe")])
+levels = Array[PackedScene]([ExtResource("2_r3mva"), ExtResource("3_ct4qe")])
 titleView = NodePath("../CanvasLayer/Title")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
