@@ -10,7 +10,6 @@ public partial class LevelController : Node
 	[Export] Label timeText;
 	[Export] ResultView resultView;
 
-	[Export] AudioStreamPlayer2D bgm;
 	[Export] AudioStreamPlayer2D endSound;
 
 	// Called when the node enters the scene tree for the first time.
@@ -77,7 +76,6 @@ public partial class LevelController : Node
 			resultView.ShowWinView();
 		}
 
-		bgm.Stop();
 		endSound.Play();
 	}
 
@@ -88,7 +86,6 @@ public partial class LevelController : Node
 		// show lose panel
 		resultView.ShowLoseView();
 
-		bgm.Stop();
 		endSound.Play();
 	}
 

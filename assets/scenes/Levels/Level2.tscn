@@ -1,13 +1,22 @@
-[gd_scene load_steps=6 format=4 uid="uid://krd42qodn2j3"]
+[gd_scene load_steps=10 format=4 uid="uid://dtagpjb63svt6"]
 
 [ext_resource type="Script" path="res://src/Level/LevelController.cs" id="1_7ciaj"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="2_noxvt"]
 [ext_resource type="PackedScene" uid="uid://c46aikvuy54y1" path="res://hernan/Rocket.tscn" id="3_r8eqc"]
-[ext_resource type="PackedScene" uid="uid://o3dpavfpy55x" path="res://assets/scenes/bubble_shooter.tscn" id="4_m3t2t"]
-[ext_resource type="PackedScene" uid="uid://d3jm5gjrjduhi" path="res://assets/scenes/bubble_manager.tscn" id="5_3hu3g"]
+[ext_resource type="PackedScene" path="res://assets/scenes/bubble_shooter.tscn" id="4_m3t2t"]
+[ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="5_3hu3g"]
+[ext_resource type="Script" path="res://src/Level/GoalArea.cs" id="6_55muc"]
+[ext_resource type="Script" path="res://src/View/ResultView.cs" id="7_shfh6"]
+[ext_resource type="AudioStream" uid="uid://deu3qv5ql12sq" path="res://assets/audios/bgm/bgmend.wav" id="8_uv4p3"]
 
-[node name="LevelRoot" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbnq5"]
+size = Vector2(343, 159)
+
+[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "endSound")]
 script = ExtResource("1_7ciaj")
+timeText = NodePath("CanvasLayer/Control/TimeText")
+resultView = NodePath("CanvasLayer/ResultPanel")
+endSound = NodePath("endSound")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -4047.0
@@ -31,3 +40,159 @@ position = Vector2(-770, 803)
 
 [node name="BubbleManager" parent="." instance=ExtResource("5_3hu3g")]
 MaxBubbleCount = 16
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("controller")]
+position = Vector2(2230, -2300)
+collision_mask = 513
+script = ExtResource("6_55muc")
+controller = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-650.5, -22.5)
+shape = SubResource("RectangleShape2D_wbnq5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeText" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 81.0
+offset_right = 46.0
+offset_bottom = 131.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "99:99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultPanel" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("winTitle", "loseTitle", "returnTitleBtn", "nextLevelBtn", "retryLevelBtn")]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_shfh6")
+winTitle = NodePath("WinTitle")
+loseTitle = NodePath("LoseTitle")
+returnTitleBtn = NodePath("ReturnTitle")
+nextLevelBtn = NodePath("NextLevel")
+retryLevelBtn = NodePath("Retry")
+
+[node name="Bg" type="ColorRect" parent="CanvasLayer/ResultPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.427493, 0.427493, 0.427493, 0.662745)
+
+[node name="WinTitle" type="Label" parent="CanvasLayer/ResultPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -299.5
+offset_top = -220.0
+offset_right = 299.5
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.913725, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Level Completed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoseTitle" type="Label" parent="CanvasLayer/ResultPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -220.0
+offset_right = 233.0
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.218707
+theme_override_colors/font_color = Color(0.582886, 0.00369933, 0.933736, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "Fail..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnTitle" type="Button" parent="CanvasLayer/ResultPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 166.0
+offset_right = 140.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Return Title"
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/ResultPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 288.5
+offset_right = 60.0
+offset_bottom = 363.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Next"
+
+[node name="Retry" type="Button" parent="CanvasLayer/ResultPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 288.5
+offset_right = 60.0
+offset_bottom = 363.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Retry"
+
+[node name="endSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_uv4p3")

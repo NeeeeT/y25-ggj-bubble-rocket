@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://884jpb8qb62g"]
+[gd_scene load_steps=10 format=4 uid="uid://884jpb8qb62g"]
 
 [ext_resource type="Script" path="res://src/Level/LevelController.cs" id="1_5d50u"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="2_twv6u"]
@@ -7,17 +7,15 @@
 [ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="5_jih0x"]
 [ext_resource type="Script" path="res://src/Level/GoalArea.cs" id="6_og0xc"]
 [ext_resource type="Script" path="res://src/View/ResultView.cs" id="7_rjxij"]
-[ext_resource type="AudioStream" uid="uid://bxvll41o5iuso" path="res://assets/audios/bgm/bgm1.wav" id="8_13ltp"]
 [ext_resource type="AudioStream" uid="uid://deu3qv5ql12sq" path="res://assets/audios/bgm/bgmend.wav" id="9_te3qq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmgo8"]
 size = Vector2(1814, 628)
 
-[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "bgm", "endSound")]
+[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "endSound")]
 script = ExtResource("1_5d50u")
 timeText = NodePath("CanvasLayer/Control/TimeText")
 resultView = NodePath("CanvasLayer/ResultPanel")
-bgm = NodePath("BGM")
 endSound = NodePath("endSound")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -41,10 +39,10 @@ position = Vector2(65, 465)
 position = Vector2(-770, 803)
 
 [node name="BubbleManager" parent="." instance=ExtResource("5_jih0x")]
-MaxBubbleCount = 16
+MaxBubbleCount = 3000
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("controller")]
-position = Vector2(-4, -3681)
+position = Vector2(-4, -3621)
 collision_mask = 513
 script = ExtResource("6_og0xc")
 controller = NodePath("..")
@@ -195,10 +193,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Retry"
-
-[node name="BGM" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_13ltp")
-autoplay = true
 
 [node name="endSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_te3qq")
