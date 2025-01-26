@@ -114,11 +114,14 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	public void Die()
 	{
-		
+		if (RevengeTarget!=null)
+			RevengeEffect(BubbleConfig.RevengeTimeNeed);
 		OnBubbleDestroyed?.Invoke(this); // 通知管理器
 	}
 
-	
+	public IBubble RevengeTarget { get; set; } = null;
+
+
 	public void HandleCollision(IBubble other)
 	{
 		float currentTime = Time.GetTicksMsec() / 1000.0f;
@@ -133,7 +136,8 @@ public partial class Bubble : RigidBody2D, IBubble
 		if (collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold &&
 			currentTime - lastSplitTime >= CooldownTime)
 		{
-			Split();
+			if(RevengeTarget==null)
+				Split();
 		}
 		
 		GD.Print("pon");
@@ -168,23 +172,33 @@ public partial class Bubble : RigidBody2D, IBubble
 		this._acceleration = midpoint;
 		bubble._acceleration = midpoint;
 	}
-
-	public void RevengeEffect(Bubble bubble, float mSec)
+	
+	public void RevengeEffect(float mSec)
 	{
 		// 創建一個定時器
 		Timer timer = new Timer
 		{
 			WaitTime = mSec / 1000.0f, // 將毫秒轉為秒
-			OneShot = true // 設置為一次性觸發
+			OneShot = false // 設置為一次性觸發
 		};
 
 		// 將定時器添加到當前節點
-		AddChild(timer);
+		if(IsInstanceValid((Node2D)RevengeTarget))
+			((Node2D)RevengeTarget)?.AddChild(timer);
 
 		// 連接定時器的 timeout 信號，使用 Lambda 表達式傳遞參數
 		timer.Timeout += () =>
 		{
-			bubble.Die();
+			if (IsInstanceValid(timer) && IsInstanceValid((Bubble)RevengeTarget))
+			{
+				timer?.GetParent<IBubble>()?.Die();
+				RevengeTarget?.Die();
+			}
+			else
+			{
+				GD.Print("Bubble already freed before timeout.");
+			}
+	
 		};
 
 		// 啟動定時器

@@ -69,7 +69,9 @@ public class TapeElement : IElement
         // todo
         // 互相加速度
         me.TapeEffect(bubble, midpoint);
-        me.RevengeEffect(bubble, 1f);
+        
+        me.RevengeTarget = bubble;
+        bubble.RevengeTarget = me;
     }
 }
 
