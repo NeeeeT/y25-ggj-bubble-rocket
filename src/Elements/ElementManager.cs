@@ -25,6 +25,11 @@ public class ElementManager
             m_bubble._Modulate = new Color(0.2f, 0.2f, 0.8f);
             m_bubble.VelocityFactor = 0.99f;
         }
+
+        if (element is TapeElement)
+        {
+            m_bubble._Modulate = new Color(0.2f, 0.8f, 0.2f);
+        }
     }
 
     // 移除元素

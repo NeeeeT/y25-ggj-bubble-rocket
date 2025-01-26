@@ -27,7 +27,8 @@ public partial class Bubble : RigidBody2D, IBubble
 	private float BirthTime = 0f;
 
 	private Label _levelLabel; // 用於顯示等級的文字節點
-	
+	private Vector2? _acceleration;
+
 
 	public Color _Modulate
 	{
@@ -39,7 +40,7 @@ public partial class Bubble : RigidBody2D, IBubble
 	public override void _Ready()
 	{
 		BirthTime = Time.GetTicksMsec()/1000;
-		
+		_acceleration = null;
 		ElementManager.init(this);
 		
 		// 初始化泡泡大小
@@ -86,7 +87,9 @@ public partial class Bubble : RigidBody2D, IBubble
 		if(Level>=BubbleConfig.MaxLivableLevel)
 			Die();
 
-		this.LinearVelocity *= VelocityFactor;
+		if(VelocityFactor != 1.0f)
+			this.LinearVelocity *= VelocityFactor;
+		this.ApplyAcceleration(delta);
 	}
 
 	private void UpdateLabel()
@@ -111,9 +114,13 @@ public partial class Bubble : RigidBody2D, IBubble
 
 	public void Die()
 	{
-		
+		if (RevengeTarget!=null)
+			RevengeEffect(BubbleConfig.RevengeTimeNeed);
 		OnBubbleDestroyed?.Invoke(this); // 通知管理器
 	}
+
+	public IBubble RevengeTarget { get; set; } = null;
+
 
 	public void HandleCollision(IBubble other)
 	{
@@ -129,7 +136,8 @@ public partial class Bubble : RigidBody2D, IBubble
 		if (collisionTimestamps.Count >= BubbleConfig.CollisionSplitThreshold &&
 			currentTime - lastSplitTime >= CooldownTime)
 		{
-			Split();
+			if(RevengeTarget==null)
+				Split();
 		}
 		
 		GD.Print("pon");
@@ -159,6 +167,64 @@ public partial class Bubble : RigidBody2D, IBubble
 		UpdateLabelPosition();
 	}
 
+	public void TapeEffect(Bubble bubble, Vector2 midpoint)
+	{
+		this._acceleration = midpoint;
+		bubble._acceleration = midpoint;
+	}
+	
+	public void RevengeEffect(float mSec)
+	{
+		// 創建一個定時器
+		Timer timer = new Timer
+		{
+			WaitTime = mSec / 1000.0f, // 將毫秒轉為秒
+			OneShot = false // 設置為一次性觸發
+		};
+
+		// 將定時器添加到當前節點
+		if(IsInstanceValid((Node2D)RevengeTarget))
+			((Node2D)RevengeTarget)?.AddChild(timer);
+
+		// 連接定時器的 timeout 信號，使用 Lambda 表達式傳遞參數
+		timer.Timeout += () =>
+		{
+			if (IsInstanceValid(timer) && IsInstanceValid((Bubble)RevengeTarget))
+			{
+				timer?.GetParent<IBubble>()?.Die();
+				RevengeTarget?.Die();
+			}
+			else
+			{
+				GD.Print("Bubble already freed before timeout.");
+			}
+	
+		};
+
+		// 啟動定時器
+		timer.Start();
+	}
+
+	private void ApplyAcceleration(double delta)
+	{
+		// 加速度相關
+		if (this._acceleration == null)
+			return;
+
+		// 計算指向目標的方向
+		Vector2 direction = ((Vector2)this._acceleration - GlobalPosition).Normalized();
+
+		// 更新速度（限制最大速度）
+		this.LinearVelocity += (_acceleration * (float)delta)?? Vector2.Zero;
+		if (this.LinearVelocity.Length() > BubbleConfig.MaxAccelerationSpeedAllowed)
+		{
+			this.LinearVelocity  = this.LinearVelocity .Normalized() * BubbleConfig.MaxAccelerationSpeedAllowed;
+		}
+
+		// 更新位置
+		Position += this.LinearVelocity * (float)delta;
+	}
+	
 	private void CheckLifeRules()
 	{
 		GD.Print("碰撞次數: "+collisionTimestamps.Count);

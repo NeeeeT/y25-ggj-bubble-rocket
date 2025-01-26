@@ -67,6 +67,11 @@ public class TapeElement : IElement
     {
         // 黏合效果：位置貼合+延遲性同生共死
         // todo
+        // 互相加速度
+        me.TapeEffect(bubble, midpoint);
+        
+        me.RevengeTarget = bubble;
+        bubble.RevengeTarget = me;
     }
 }
 
