@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/MainScene.cs" id="1_mtuc4"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="1_sauhs"]
-[ext_resource type="Texture2D" uid="uid://clq4wd0rhjusq" path="res://assets/arts/rocket.svg" id="2_6qjbd"]
+[ext_resource type="Texture2D" uid="uid://b0auhn7c5ln0y" path="res://assets/arts/rocket.svg" id="2_6qjbd"]
 [ext_resource type="PackedScene" uid="uid://doqa40v7ryt40" path="res://hernan/Bubble.tscn" id="2_lko32"]
 [ext_resource type="PackedScene" uid="uid://c46aikvuy54y1" path="res://hernan/Rocket.tscn" id="3_gf7rx"]
 [ext_resource type="PackedScene" uid="uid://d3jm5gjrjduhi" path="res://assets/scenes/bubble_manager.tscn" id="5_ickvb"]

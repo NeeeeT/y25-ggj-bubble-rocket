@@ -60,7 +60,6 @@ stream_20/stream = ExtResource("17_rbk67")
 [node name="Rocket" type="Node2D"]
 
 [node name="RocketBody" type="RigidBody2D" parent="."]
-collision_layer = 513
 physics_material_override = SubResource("PhysicsMaterial_8u7o5")
 gravity_scale = 0.0
 can_sleep = false
