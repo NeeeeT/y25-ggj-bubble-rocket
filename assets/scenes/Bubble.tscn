@@ -2,7 +2,7 @@
 
 [ext_resource type="PhysicsMaterial" uid="uid://cuwgwtul7uiwy" path="res://assets/material/LowFrictionMaterial.tres" id="1_pplkk"]
 [ext_resource type="Script" path="res://src/Bubbles/Bubble.cs" id="1_uw45q"]
-[ext_resource type="Texture2D" uid="uid://corm4ss5q6uwy" path="res://assets/arts/bubleImg_mini.png" id="3_b4tou"]
+[ext_resource type="Texture2D" uid="uid://dvjo6dpa8u1cy" path="res://assets/arts/normal_bubble.svg" id="3_4lh0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cyyoj"]
 radius = 25.0
@@ -15,7 +15,8 @@ physics_material_override = ExtResource("1_pplkk")
 script = ExtResource("1_uw45q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_b4tou")
+scale = Vector2(0.480251, 0.480251)
+texture = ExtResource("3_4lh0n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cyyoj")
