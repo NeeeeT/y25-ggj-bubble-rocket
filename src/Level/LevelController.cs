@@ -30,7 +30,7 @@ public partial class LevelController : Node
 		if (isStart)
 		{
 			countdown -= delta;
-			timeText.Text = countdown.ToString();
+			timeText.Text = Math.Floor(countdown).ToString();
 			if (countdown <= 0){
 				GD.Print("Time's up");
 				SetLose();
@@ -64,6 +64,7 @@ public partial class LevelController : Node
 
 	public void SetWin()
 	{
+		if (!isStart) return; 
 		isStart = false;
 		GD.Print("Win!");
 		
@@ -81,6 +82,7 @@ public partial class LevelController : Node
 
 	public void SetLose()
 	{
+		if (!isStart) return; 
 		isStart = false;
 		GD.Print("Lose!");
 		// show lose panel
