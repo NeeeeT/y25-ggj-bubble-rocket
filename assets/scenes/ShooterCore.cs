@@ -11,6 +11,30 @@ public partial class ShooterCore : Node2D
 		GD.Print("成功呼叫C#腳本: "+position);
 		_bubbleShooter.ShootBubble(startPosition, position);
 	}
+	
+	public void TEST_Fire( Vector2 startPosition, Vector2 position)
+	{
+		GD.Print("成功呼叫C#腳本: "+position);
+		_bubbleShooter.ShootBubble(startPosition, position, "Fire");
+	}
+	
+	public void TEST_Fusion( Vector2 startPosition, Vector2 position)
+	{
+		GD.Print("成功呼叫C#腳本: "+position);
+		_bubbleShooter.ShootBubble(startPosition, position,"Fusion");
+	}
+	
+	public void TEST_Tape( Vector2 startPosition, Vector2 position)
+	{
+		GD.Print("成功呼叫C#腳本: "+position);
+		_bubbleShooter.ShootBubble(startPosition, position,"Tape");
+	}
+	
+	public void TEST_Death( Vector2 startPosition, Vector2 position)
+	{
+		GD.Print("成功呼叫C#腳本: "+position);
+		_bubbleShooter.ShootBubble(startPosition, position, "Death");
+	}
 
 	public override void _Draw()
 	{

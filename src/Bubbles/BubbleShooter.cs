@@ -34,7 +34,7 @@ public partial class BubbleShooter : Node2D
         }
     }
 
-    public void ShootBubble(Vector2 StartPosition,Vector2 targetPosition)
+    public void ShootBubble(Vector2 StartPosition,Vector2 targetPosition, String element = "")
     {
         // 生成泡泡
         var bubble = _bubbleManager.CreateBubble(StartPosition, BubbleConfig.SizeScaleBase);
@@ -53,13 +53,39 @@ public partial class BubbleShooter : Node2D
         bubble.LinearVelocity = direction * 200; // 射向點擊位置，速度為 200
 
         bubble.ElementManager.init(bubble);
-        
-        //bubble.ElementManager.AddElement(new NormalElement()); // 賦予屬性: 一般 
-        bubble.ElementManager.AddElement(new FireElement()); // 賦予屬性: 火
-        
-        // 以下屬性 請不要混搭
-        //bubble.ElementManager.AddElement(new FusionElement()); // 賦予屬性: 融合
-        //bubble.ElementManager.AddElement(new TapeElement()); // 賦予屬性: 黏合
-        //bubble.ElementManager.AddElement(new DeathElement()); // 賦予屬性: 障礙物
+
+        switch (element)
+        {
+            case "Normal":
+            {
+                bubble.ElementManager.AddElement(new NormalElement()); // 賦予屬性: 一般 
+                break;
+            }
+            case "Fire":
+            {
+                bubble.ElementManager.AddElement(new FireElement()); // 賦予屬性: 火
+                break;
+            }
+            case "Fusion":
+            {
+                bubble.ElementManager.AddElement(new FusionElement()); // 賦予屬性: 融合
+                break;
+            }
+            case "Tape":
+            {
+                bubble.ElementManager.AddElement(new TapeElement()); // 賦予屬性: 黏合
+                break;
+            }
+            case "Death":
+            {
+                bubble.ElementManager.AddElement(new DeathElement()); // 賦予屬性: 障礙物
+                break;
+            }
+
+            default:
+            {
+                break;
+            }
+        }
     }
 }
