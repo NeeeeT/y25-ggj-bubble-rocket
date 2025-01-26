@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://u52idipo1c7p"]
 
-[ext_resource type="Texture2D" uid="uid://ce2elfun56j43" path="res://assets/arts/tilemap.svg" id="2_0oyct"]
+[ext_resource type="Texture2D" uid="uid://ow505sx6v4ec" path="res://assets/arts/tilemap.svg" id="2_0oyct"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o5tqf"]
 rough = true

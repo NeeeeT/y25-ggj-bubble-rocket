@@ -227,8 +227,8 @@ public partial class Bubble : RigidBody2D, IBubble
 	
 	private void CheckLifeRules()
 	{
-		GD.Print("碰撞次數: "+collisionTimestamps.Count);
-		GD.Print("空窗期: "+(currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault())));
+		//GD.Print("碰撞次數: "+collisionTimestamps.Count);
+		//GD.Print("空窗期: "+(currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault())));
 		if (collisionTimestamps.Count == 0 && 
 			currentTime-Math.Max(BirthTime, collisionTimestamps.LastOrDefault()) > BubbleConfig.CollisionCheckDuration)
 		{

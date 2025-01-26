@@ -70,7 +70,12 @@ public partial class LevelController : Node
 		
 		// gm.StartNextLevel();
 		// show win panel
-		resultView.ShowWinView();
+		if (gm.IsFinalLevel){
+			resultView.ShowFinalWinView();
+		}
+		else{
+			resultView.ShowWinView();
+		}
 
 		bgm.Stop();
 		endSound.Play();
