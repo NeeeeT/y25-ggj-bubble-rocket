@@ -24,6 +24,12 @@ func _physics_process(delta: float) -> void:
 		##var shot = bubbleShot.instantiate()
 		#$ShooterCore.TEST($Marker2D.global_position, get_target_vector(1))
 		#$ShooterCore.TEST($Marker2D.global_position, get_target_vector(1))
+		
+		# 射出第1關泡泡
+		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "1")
+		# 射出第2關泡泡
+		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "2")
+		# 射出第3關泡泡
 		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "3")
 		
 		
