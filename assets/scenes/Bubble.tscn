@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://doqa40v7ryt40"]
+[gd_scene load_steps=11 format=3 uid="uid://doqa40v7ryt40"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cuwgwtul7uiwy" path="res://assets/material/LowFrictionMaterial.tres" id="1_pplkk"]
 [ext_resource type="Script" path="res://src/Bubbles/Bubble.cs" id="1_uw45q"]
 [ext_resource type="Texture2D" uid="uid://vgtsco5mwwor" path="res://assets/arts/normal_bubble.svg" id="3_cfdra"]
+[ext_resource type="AudioStream" uid="uid://bvx0lwbsgiyxu" path="res://assets/audios/collision/Collision1.wav" id="4_uoril"]
+[ext_resource type="AudioStream" uid="uid://tyewuphqd3l0" path="res://assets/audios/collision/Collision2.wav" id="5_h6ha4"]
+[ext_resource type="AudioStream" uid="uid://crlwwg33q7fg5" path="res://assets/audios/collision/Collision3.wav" id="6_htcku"]
+[ext_resource type="AudioStream" uid="uid://c6v72oh64gukr" path="res://assets/audios/collision/Collision4.wav" id="7_1lhno"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cyyoj"]
 radius = 25.0
@@ -10,9 +14,19 @@ radius = 25.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ecxl8"]
 radius = 35.8
 
-[node name="Bubble" type="RigidBody2D" groups=["RigidBodies"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h02ux"]
+streams_count = 4
+stream_0/stream = ExtResource("4_uoril")
+stream_1/stream = ExtResource("5_h6ha4")
+stream_2/stream = ExtResource("6_htcku")
+stream_3/stream = ExtResource("7_1lhno")
+
+[node name="Bubble" type="RigidBody2D" node_paths=PackedStringArray("bounce", "broke", "col") groups=["RigidBodies"]]
 physics_material_override = ExtResource("1_pplkk")
 script = ExtResource("1_uw45q")
+bounce = NodePath("bounce")
+broke = NodePath("broken")
+col = NodePath("col")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.564706)
@@ -27,5 +41,14 @@ debug_color = Color(0.643137, 0.254902, 0.764706, 0.843137)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ecxl8")
+
+[node name="broken" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_h02ux")
+
+[node name="bounce" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_h02ux")
+
+[node name="col" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_h02ux")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area_body_entered"]

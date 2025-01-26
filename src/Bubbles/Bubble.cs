@@ -29,6 +29,9 @@ public partial class Bubble : RigidBody2D, IBubble
 	private Label _levelLabel; // 用於顯示等級的文字節點
 	private Vector2? _acceleration;
 
+	[Export] public AudioStreamPlayer2D bounce;
+	[Export] public AudioStreamPlayer2D broke;
+	[Export] public AudioStreamPlayer2D col;
 
 	public Color _Modulate
 	{
@@ -117,6 +120,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		if (RevengeTarget!=null)
 			RevengeEffect(BubbleConfig.RevengeTimeNeed);
 		OnBubbleDestroyed?.Invoke(this); // 通知管理器
+		broke.Play();
 	}
 
 	public IBubble RevengeTarget { get; set; } = null;
@@ -240,17 +244,19 @@ public partial class Bubble : RigidBody2D, IBubble
 	{
 		if (body == this)
 		{
-			GD.Print("無效碰撞: self");
+			GD.Print("無效碰撞: self");		
 			return;
 		}
 		
 		if (body is IBubble bubble)
 		{
 			HandleCollision(bubble);
+			bounce.Play();
 		}
 		else
 		{
 			GD.Print("無效碰撞: not IBubble");
+			col.Play();
 		}
 	}
 }

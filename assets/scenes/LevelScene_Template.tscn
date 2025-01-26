@@ -26,6 +26,14 @@ offset_right = 4145.0
 offset_bottom = 2796.0
 color = Color(0.491451, 0.716801, 0.870178, 1)
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -4047.0
+offset_top = -5396.0
+offset_right = 4145.0
+offset_bottom = 2796.0
+scale = Vector2(0.996798, 0.52)
+color = Color(0.398368, 0.730607, 0.90335, 1)
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-57, 0)
 scale = Vector2(1.01454, 0.928298)
@@ -43,7 +51,7 @@ position = Vector2(-770, 803)
 MaxBubbleCount = 100
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("controller")]
-position = Vector2(-4, -3681)
+position = Vector2(-4, -1236)
 collision_mask = 513
 script = ExtResource("6_3d65y")
 controller = NodePath("..")
