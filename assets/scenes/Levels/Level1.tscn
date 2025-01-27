@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://884jpb8qb62g"]
+[gd_scene load_steps=12 format=4 uid="uid://884jpb8qb62g"]
 
 [ext_resource type="Script" path="res://src/Level/LevelController.cs" id="1_5d50u"]
 [ext_resource type="TileSet" uid="uid://u52idipo1c7p" path="res://assets/tilemap/map_tile_set.tres" id="2_twv6u"]
@@ -6,15 +6,20 @@
 [ext_resource type="PackedScene" path="res://assets/scenes/bubble_shooter.tscn" id="4_nhqj1"]
 [ext_resource type="PackedScene" path="res://assets/scenes/bubble_manager.tscn" id="5_jih0x"]
 [ext_resource type="Script" path="res://src/Level/GoalArea.cs" id="6_og0xc"]
+[ext_resource type="Texture2D" uid="uid://vgtsco5mwwor" path="res://assets/arts/normal_bubble.svg" id="7_pb64p"]
 [ext_resource type="Script" path="res://src/View/ResultView.cs" id="7_rjxij"]
+[ext_resource type="Texture2D" uid="uid://dxl6hmeq7we02" path="res://assets/arts/fire_bubble.svg" id="8_lbnfu"]
 [ext_resource type="AudioStream" uid="uid://deu3qv5ql12sq" path="res://assets/audios/bgm/bgmend.wav" id="9_te3qq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmgo8"]
 size = Vector2(1814, 628)
 
-[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("timeText", "resultView", "endSound")]
+[node name="LevelRoot" type="Node2D" node_paths=PackedStringArray("gameUI", "timeText", "normalBubbleIcon", "fireBubbleIcon", "resultView", "endSound")]
 script = ExtResource("1_5d50u")
+gameUI = NodePath("CanvasLayer/Control")
 timeText = NodePath("CanvasLayer/Control/TimeText")
+normalBubbleIcon = NodePath("CanvasLayer/Control/BubbleSwitch/NormalBubble")
+fireBubbleIcon = NodePath("CanvasLayer/Control/BubbleSwitch/FireBubble")
 resultView = NodePath("CanvasLayer/ResultPanel")
 endSound = NodePath("endSound")
 
@@ -76,6 +81,61 @@ theme_override_font_sizes/font_size = 36
 text = "99:99"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BubbleSwitch" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -70.0
+offset_right = 191.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/BubbleSwitch"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 100.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "BubbleType: "
+vertical_alignment = 1
+
+[node name="NormalBubble" type="TextureRect" parent="CanvasLayer/Control/BubbleSwitch"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -17.0
+offset_right = -1.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_pb64p")
+
+[node name="FireBubble" type="TextureRect" parent="CanvasLayer/Control/BubbleSwitch"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -20.0
+offset_right = -1.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_lbnfu")
 
 [node name="ResultPanel" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("winTitle", "loseTitle", "returnTitleBtn", "nextLevelBtn", "retryLevelBtn")]
 visible = false

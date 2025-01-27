@@ -32,6 +32,8 @@ public partial class Bubble : RigidBody2D, IBubble
 	[Export] public AudioStreamPlayer2D bounce;
 	[Export] public AudioStreamPlayer2D broke;
 	[Export] public AudioStreamPlayer2D col;
+	[Export] public AudioStreamPlayer2D merge;
+	[Export] public AudioStreamPlayer2D explosion;
 
 	public Color _Modulate
 	{
@@ -59,13 +61,14 @@ public partial class Bubble : RigidBody2D, IBubble
 		areaShape.Scale = new Vector2(Size / BubbleConfig.SizeScaleBase, Size / BubbleConfig.SizeScaleBase);
 
 		// 初始化文字節點
-		_levelLabel = new Label
-		{
-			Text = Level.ToString(),
-			Modulate = Colors.Black
-		};
-		AddChild(_levelLabel);
-		UpdateLabelPosition();
+		// _levelLabel = new Label
+		// {
+		// 	Text = Level.ToString(),
+		// 	Modulate = Colors.Black
+		// };
+		// AddChild(_levelLabel);
+		// UpdateLabelPosition();
+		ElementManager.explosion = explosion;
 	}
 
 	public override void _Process(double delta)
@@ -84,7 +87,7 @@ public partial class Bubble : RigidBody2D, IBubble
 			Level += (int)(elapsedTime_forLevel * LevelGrowthRate);
 			elapsedTime_forLevel = 0.0f;
 			UpdateSize(); // 更新大小
-			UpdateLabel(); // 更新文字
+			// UpdateLabel(); // 更新文字
 		}
 		
 		if(Level>=BubbleConfig.MaxLivableLevel)
@@ -95,16 +98,16 @@ public partial class Bubble : RigidBody2D, IBubble
 		this.ApplyAcceleration(delta);
 	}
 
-	private void UpdateLabel()
-	{
-		_levelLabel.Text = Level.ToString();
-		UpdateLabelPosition();
-	}
+	// private void UpdateLabel()
+	// {
+	// 	// _levelLabel.Text = Level.ToString();
+	// 	UpdateLabelPosition();
+	// }
 
-	private void UpdateLabelPosition()
-	{
-		_levelLabel.Position = new Vector2(-_levelLabel.GetMinimumSize().X / 2, -Size / 2 - 10); // 文字在泡泡上方
-	}
+	// private void UpdateLabelPosition()
+	// {
+	// 	_levelLabel.Position = new Vector2(-_levelLabel.GetMinimumSize().X / 2, -Size / 2 - 10); // 文字在泡泡上方
+	// }
 
 	public void Split()
 	{
@@ -112,6 +115,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		lastSplitTime = currentTime;
 		var manager = (BubbleManager)GetParent();
 		manager.SplitBubble(this);
+		merge.Play();
 		GD.Print("Split:" + manager.CurrentBubbleCount);
 	}
 
@@ -168,7 +172,7 @@ public partial class Bubble : RigidBody2D, IBubble
 		areaShape.Scale = new Vector2(Size / BubbleConfig.SizeScaleBase, Size / BubbleConfig.SizeScaleBase);
 
 		// 更新文字位置
-		UpdateLabelPosition();
+		// UpdateLabelPosition();
 	}
 
 	public void TapeEffect(Bubble bubble, Vector2 midpoint)

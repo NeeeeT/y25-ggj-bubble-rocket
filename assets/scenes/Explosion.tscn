@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceyfp388hpbj5"]
+[gd_scene load_steps=6 format=3 uid="uid://ceyfp388hpbj5"]
 
 [ext_resource type="Script" path="res://src/Explosion.cs" id="1_80egw"]
+[ext_resource type="AudioStream" uid="uid://bj0k0qyuyp3d8" path="res://assets/audios/explode/Explode1.wav" id="2_bmxpm"]
+[ext_resource type="AudioStream" uid="uid://dktriya8qwe4v" path="res://assets/audios/explode/Explode2.wav" id="3_ecxi3"]
+[ext_resource type="AudioStream" uid="uid://do0a8oisieimc" path="res://assets/audios/explode/Explode3.wav" id="4_k8pft"]
 
-[node name="Explosion" type="Node2D"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4q40s"]
+streams_count = 3
+stream_0/stream = ExtResource("2_bmxpm")
+stream_1/stream = ExtResource("3_ecxi3")
+stream_2/stream = ExtResource("4_k8pft")
+
+[node name="Explosion" type="Node2D" node_paths=PackedStringArray("explosion")]
 script = ExtResource("1_80egw")
+explosion = NodePath("explosion")
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4q40s")
+volume_db = 5.0
+autoplay = true

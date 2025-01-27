@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://doqa40v7ryt40"]
+[gd_scene load_steps=10 format=3 uid="uid://c2fnc3tglavml"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://cuwgwtul7uiwy" path="res://assets/material/LowFrictionMaterial.tres" id="1_pplkk"]
-[ext_resource type="Script" path="res://src/Bubbles/Bubble.cs" id="1_uw45q"]
-[ext_resource type="Texture2D" uid="uid://vgtsco5mwwor" path="res://assets/arts/normal_bubble.svg" id="3_cfdra"]
-[ext_resource type="AudioStream" uid="uid://bj0k0qyuyp3d8" path="res://assets/audios/explode/Explode1.wav" id="4_22au7"]
-[ext_resource type="AudioStream" uid="uid://dktriya8qwe4v" path="res://assets/audios/explode/Explode2.wav" id="5_33m7x"]
-[ext_resource type="AudioStream" uid="uid://do0a8oisieimc" path="res://assets/audios/explode/Explode3.wav" id="6_kl4g6"]
+[ext_resource type="PhysicsMaterial" uid="uid://cuwgwtul7uiwy" path="res://assets/material/LowFrictionMaterial.tres" id="1_0060a"]
+[ext_resource type="Script" path="res://src/Bubbles/Bubble.cs" id="2_faryb"]
+[ext_resource type="Texture2D" uid="uid://dxl6hmeq7we02" path="res://assets/arts/fire_bubble.svg" id="3_u1lbh"]
+[ext_resource type="AudioStream" uid="uid://1w2n4pli7gn4" path="res://assets/audios/bubbleMoving/BubbleMoving.wav" id="4_8kvv8"]
+[ext_resource type="AudioStream" uid="uid://dfkfh5vdaqxxf" path="res://assets/audios/bubbleMoving/BubbleMoving2.wav" id="5_2k86l"]
+[ext_resource type="AudioStream" uid="uid://b5ymecxn2e1qx" path="res://assets/audios/bubbleMoving/BubbleMoving3.wav" id="6_iyyiq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cyyoj"]
 radius = 25.0
@@ -17,13 +17,13 @@ radius = 35.8
 playback_mode = 1
 random_volume_offset_db = 0.5
 streams_count = 3
-stream_0/stream = ExtResource("4_22au7")
-stream_1/stream = ExtResource("5_33m7x")
-stream_2/stream = ExtResource("6_kl4g6")
+stream_0/stream = ExtResource("4_8kvv8")
+stream_1/stream = ExtResource("5_2k86l")
+stream_2/stream = ExtResource("6_iyyiq")
 
 [node name="Bubble" type="RigidBody2D" node_paths=PackedStringArray("bounce", "broke", "col", "merge") groups=["RigidBodies"]]
-physics_material_override = ExtResource("1_pplkk")
-script = ExtResource("1_uw45q")
+physics_material_override = ExtResource("1_0060a")
+script = ExtResource("2_faryb")
 bounce = NodePath("bounce")
 broke = NodePath("broken")
 col = NodePath("col")
@@ -32,7 +32,7 @@ merge = NodePath("merge")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.564706)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_cfdra")
+texture = ExtResource("3_u1lbh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cyyoj")
@@ -56,12 +56,6 @@ stream = SubResource("AudioStreamRandomizer_h02ux")
 stream = SubResource("AudioStreamRandomizer_h02ux")
 
 [node name="move" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_h02ux")
-volume_db = -3.0
-autoplay = true
-max_distance = 600.0
-
-[node name="explosion" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_h02ux")
 volume_db = -3.0
 autoplay = true

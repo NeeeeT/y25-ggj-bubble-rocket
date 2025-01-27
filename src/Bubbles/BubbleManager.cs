@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public partial class BubbleManager : Node
 {
 	[Export] public PackedScene BubbleScene { get; set; } // 泡泡場景
+	[Export] public PackedScene FireBubbleScene { get; set; } // 泡泡場景
 	[Export] public int MaxBubbleCount { get; set; } = BubbleConfig.MaxBubbleCount; // 最大泡泡數量
 
 	private int _currentBubbleCount => _bubbles.Count;
@@ -29,6 +30,34 @@ public partial class BubbleManager : Node
 		}
 
 		var newBubble = (Bubble)BubbleScene.Instantiate();
+		newBubble.Position = position;
+		newBubble.Size = size;
+		newBubble.Weight = size * BubbleConfig.DensityFactor;
+
+		AddChild(newBubble); // 添加到場景樹
+		_bubbles.Add(newBubble);
+
+		// 連接刪除信號
+		newBubble.OnBubbleDestroyed += HandleBubbleDestroyed;
+
+		if (element != null)
+		{
+			newBubble.ElementManager.init(newBubble);
+			newBubble.ElementManager.AddElement(element);
+		}
+		
+		return newBubble;
+	}
+
+		public Bubble CreateFireBubble(Vector2 position, float size, IElement element=null)
+	{
+		if (_currentBubbleCount >= MaxBubbleCount)
+		{
+			GD.Print("Cannot create more bubbles, limit reached.");
+			return null;
+		}
+
+		var newBubble = (Bubble)FireBubbleScene.Instantiate();
 		newBubble.Position = position;
 		newBubble.Size = size;
 		newBubble.Weight = size * BubbleConfig.DensityFactor;

@@ -26,13 +26,17 @@ func _physics_process(delta: float) -> void:
 		#$ShooterCore.TEST($Marker2D.global_position, get_target_vector(1))
 		
 		# 射出第1關泡泡
-		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "1")
+		# $ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "1")
 		# 射出第2關泡泡
-		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "2")
+		# $ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "2")
 		# 射出第3關泡泡
-		$ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "3")
+		# $ShooterCore.ShootByIndex($Marker2D.global_position, get_target_vector(1), "3")
+		$ShooterCore.ShootBySwitch($Marker2D.global_position, get_target_vector(1))
 		
-		
+	if Input.is_action_just_pressed("SwitchBubbleUp"):
+		$ShooterCore.SwtichBubbleUp();
+	if Input.is_action_just_pressed("SwitchBubbleDown"):
+		$ShooterCore.SwtichBubbleDown();
 		##$Marker2D.add_child(shot)
 		##shoot_player.play()
 		

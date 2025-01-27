@@ -9,7 +9,7 @@ public partial class GameManager : Node
 	[Export] public TitleView titleView;
 
 	private LevelController currentLevelController = null;
-
+	[Export] public PackedScene explosionScene;
 	public override void _Ready()
 	{
 		// register ui event
@@ -55,14 +55,18 @@ public partial class GameManager : Node
 		LoadLevel(currentLevelId);
 	}
 
+	private void SetBGMVolume(double val1, double val2, double val3){
+		MusicPlayer musicPlayer = (MusicPlayer) GetNode("/root/MusicPlayer");
+		double[] vals = new double[] { val1, val2, val3 };
+		musicPlayer.SetSections(vals);
+	}
+
 	private void LoadLevel(int levelIndex)
 	{
-		MusicPlayer musicPlayer = (MusicPlayer) GetNode("/root/MusicPlayer");
-		double[] vals = new double[] { 1.0, 0.0, 0.0 };
-		musicPlayer.SetSections(vals);
+		
 		// LevelController levelInstance = levels[levelIndex].Instantiate();
 		// currentLevelController = levelInstance;
-
+		SetBGMVolume(1.0, 0, 0);
 		if (currentLevelController != null){
 			currentLevelController.QueueFree();
 		}
@@ -76,6 +80,15 @@ public partial class GameManager : Node
 		//     currentLevelController = levelRoot as LevelController;
 		//     GD.Print($"Find level [{levelIndex}] controller");
 		// }
+	}
+
+	public void TriggerChangeBGM(int index)
+	{
+		switch(index){
+			case 0: SetBGMVolume(1.0, 0, 0); break;
+			case 1: SetBGMVolume(0, 1.0, 0); break;
+			case 2: SetBGMVolume(0, 0, 1.0); break;
+		}
 	}
 
 	public void ReturnToTitle()

@@ -7,10 +7,17 @@ public partial class LevelController : Node
 	[Export] public float LevelTime = 60;
 	double countdown = 60;
 	bool isStart = false;
+	int bubbleShootTypeTemp = 0;
+	[Export] Control gameUI;
 	[Export] Label timeText;
+	[Export] TextureRect normalBubbleIcon;
+	[Export] TextureRect fireBubbleIcon;
 	[Export] ResultView resultView;
 
 	[Export] AudioStreamPlayer2D endSound;
+
+	bool isBGM2 = false;
+	bool isBGM3 = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -35,7 +42,26 @@ public partial class LevelController : Node
 				GD.Print("Time's up");
 				SetLose();
 			}
+			if (countdown < LevelTime / 3f){
+				if (!isBGM3) gm.TriggerChangeBGM(2);
+			}
+			else if (countdown < LevelTime / 3f * 2f){
+				if (!isBGM2) gm.TriggerChangeBGM(1);
+			}
+
 		}
+		UpdateBubbleTypeDisplay();
+	}
+
+	private void UpdateBubbleTypeDisplay(){
+		if (Input.IsActionJustPressed("SwitchBubbleUp")){
+			bubbleShootTypeTemp = Math.Abs(bubbleShootTypeTemp + 1) % 2;
+		}
+		if (Input.IsActionJustPressed("SwitchBubbleDown")){
+			bubbleShootTypeTemp = Math.Abs(bubbleShootTypeTemp - 1) % 2;
+		}
+		normalBubbleIcon.Visible = bubbleShootTypeTemp == 0;
+		fireBubbleIcon.Visible = bubbleShootTypeTemp == 1;
 	}
 
 	private void ReturnTitle(){
@@ -58,12 +84,14 @@ public partial class LevelController : Node
 
 	public void StartLevel()
 	{
+		gameUI.Visible = true;
 		countdown = LevelTime;
 		isStart = true;
 	}
 
 	public void SetWin()
 	{
+		gameUI.Visible = false;
 		if (!isStart) return; 
 		isStart = false;
 		GD.Print("Win!");
@@ -82,6 +110,7 @@ public partial class LevelController : Node
 
 	public void SetLose()
 	{
+		gameUI.Visible = false;
 		if (!isStart) return; 
 		isStart = false;
 		GD.Print("Lose!");

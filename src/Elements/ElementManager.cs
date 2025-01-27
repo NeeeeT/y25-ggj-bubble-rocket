@@ -8,6 +8,7 @@ public class ElementManager
 {
     private IBubble m_bubble = null;
     private readonly List<IElement> _elements = new List<IElement>();
+    public AudioStreamPlayer2D explosion;
 
     public void init(IBubble bubble)
     {
@@ -18,17 +19,19 @@ public class ElementManager
     public void AddElement(IElement element)
     {
         _elements.Add(element);
-        if(element is FireElement)
-            m_bubble._Modulate = new Color(1, 0, 0); // RGB 為 (1, 0, 0)，即紅色
+        if(element is FireElement){
+            (element as FireElement).explosionSound = explosion;
+        }
+        //     m_bubble._Modulate = new Color(1, 0, 0); // RGB 為 (1, 0, 0)，即紅色
         if (element is NormalElement)
         {
-            m_bubble._Modulate = new Color(0.2f, 0.2f, 0.8f);
+            // m_bubble._Modulate = new Color(0.2f, 0.2f, 0.8f);
             m_bubble.VelocityFactor = 0.999f;
         }
 
         if (element is TapeElement)
         {
-            m_bubble._Modulate = new Color(0.2f, 0.8f, 0.2f);
+            // m_bubble._Modulate = new Color(0.2f, 0.8f, 0.2f);
         }
     }
 

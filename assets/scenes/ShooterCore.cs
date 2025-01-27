@@ -1,15 +1,40 @@
 using Godot;
 using System;
+using System.Security.Principal;
 
 public partial class ShooterCore : Node2D
 {
 	private BubbleShooter _bubbleShooter;
-	
+	public int BubbleTypeIndex { get; private set; } = 0;
+	private const int bubbleTypeCount = 2;
+
+	[Export] public AudioStreamPlayer2D bubbleSwitch;
 	public void ShootByIndex( Vector2 startPosition, Vector2 position, string index)
 	{
-		_bubbleShooter.ShootBubble(startPosition, position, index);
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position, index);
 	}
 	
+	public void SwtichBubbleUp(){
+		BubbleTypeIndex = Math.Abs(BubbleTypeIndex + 1) % bubbleTypeCount;
+		bubbleSwitch.Play();
+	}
+
+	public void SwtichBubbleDown(){
+		BubbleTypeIndex = Math.Abs(BubbleTypeIndex - 1) % bubbleTypeCount;
+		bubbleSwitch.Play();
+	}
+
+	public void ShootBySwitch( Vector2 startPosition, Vector2 position)
+	{
+		// _bubbleShooter.ShootBubble(startPosition, startPosition + position, index);
+		string type = BubbleTypeIndex switch{
+			1 => "Fire",
+			_ => "Normal",
+		};
+		GD.Print($"Shoot :{type}");
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position, type);
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public void TEST( Vector2 startPosition, Vector2 position)
 	{
@@ -24,17 +49,17 @@ public partial class ShooterCore : Node2D
 	
 	public void TEST_Fusion( Vector2 startPosition, Vector2 position)
 	{
-		_bubbleShooter.ShootBubble(startPosition, position,"Fusion");
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position,"Fusion");
 	}
 	
 	public void TEST_Tape( Vector2 startPosition, Vector2 position)
 	{
-		_bubbleShooter.ShootBubble(startPosition, position,"Tape");
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position,"Tape");
 	}
 	
 	public void TEST_Death( Vector2 startPosition, Vector2 position)
 	{
-		_bubbleShooter.ShootBubble(startPosition, position, "Death");
+		_bubbleShooter.ShootBubble(startPosition, startPosition + position, "Death");
 	}
 
 	public override void _Draw()
